@@ -1,0 +1,161 @@
+/*Table creation*/
+
+-- Special Rules table
+CREATE TABLE special_rules (
+    Rule_id SERIAL PRIMARY KEY,
+    Rule_name VARCHAR(100) NOT NULL,
+	Rule_desc TEXT NOT NULL
+);
+
+-- Psychic Powers Domains table
+CREATE TABLE psychic_powers_domains (
+    Domains_id SERIAL PRIMARY KEY,
+    Domains VARCHAR(100) NOT NULL
+);
+
+-- Psychic Powers table
+CREATE TABLE psychic_powers (
+    Powers_id SERIAL PRIMARY KEY,
+    Domains_id INT NOT NULL REFERENCES psychic_powers_domains(Domains_id),
+    Powers_name VARCHAR(100) NOT NULL,
+	Powers_type VARCHAR(100) NOT NULL,
+    Powers_cost INT NOT NULL,
+	Powers_desc TEXT NOT NULL
+);
+
+-- Factions table
+CREATE TABLE factions (
+    Faction_id SERIAL PRIMARY KEY,
+    Faction_name VARCHAR(100) NOT NULL,
+	Faction_keywords VARCHAR(100) NOT NULL
+);
+
+-- Factions Aptitudes table
+CREATE TABLE faction_aptitudes (
+    Aptitude_id SERIAL PRIMARY KEY,
+    Faction_id INT[],
+    Faction_aptitude_name VARCHAR(100) NOT NULL,
+    Faction_aptitude_desc TEXT NOT NULL
+);
+
+-- Units table
+CREATE TABLE units (
+    Unit_id SERIAL PRIMARY KEY,
+    Unit_name VARCHAR(100) NOT NULL,
+    Faction_id INT NOT NULL REFERENCES factions(Faction_id),
+    Unit_type VARCHAR(50),
+	Nb_fig INT NOT NULL,
+	M VARCHAR(10) NOT NULL,
+	CT VARCHAR(10) NOT NULL,
+	CC VARCHAR(10) NOT NULL,
+	S INT NOT NULL,
+	T INT NOT NULL,
+	W INT NOT NULL,
+	A INT NOT NULL,
+	I INT NOT NULL,
+	Cdt VARCHAR(10) NOT NULL,
+	OC INT NOT NULL,
+	Svg VARCHAR(10) NOT NULL,
+	Invul_svg VARCHAR(10),
+	Keywords VARCHAR(100) NOT NULL,
+	Aptitude_name VARCHAR(100)[],
+	Aptitude_desc TEXT[],
+	Rule_id INT[],
+    Domains_id INT[],
+    U_Pts INT
+);
+
+-- Weapons table
+CREATE TABLE weapons (
+    Weapon_id SERIAL PRIMARY KEY,
+    Faction_id INT NOT NULL REFERENCES factions(Faction_id),
+    Weapon_name VARCHAR(100) NOT NULL,
+    Weapon_type VARCHAR(50),
+    Rule_id INT[],
+    Range VARCHAR(50),
+	A VARCHAR(50),
+	S VARCHAR(50),
+	PA INT,
+    D VARCHAR(50),
+    W_Pts INT
+);
+
+/*Fulfill Tables*/
+
+-- Special Rules table
+INSERT INTO special_rules (Rule_name, Rule_desc)
+VALUES
+    ('Acute Senses', 'If a unit contains at least one model with this special rule, and that unit arrives on a random table edge (due to Outflank, or other special rules), then you can choose which table edge they arrive from.'),
+    ('Adamantium Will', 'A unit that contains at least one model with this special rule receives a +1 bonus to Deny the Witch tests.'),
+    ('And They Shall Know No Fear', 'A unit that contains at least one model with this special rule automatically passes Fear and Regroup tests. When it Regroups, the unit does not make the 3" Regroup move, but can instead move, shoot (or run) and declare charges normally in that turn. Furthermore, if a unit containing one or more models with this special rule is caught by a Sweeping Advance, they are not destroyed, but remain locked in combat instead.')
+;
+
+-- Psychic Powers Domains table
+INSERT INTO psychic_powers_domains (Domains)
+VALUES
+    ('Biomancy'), ('Divination'), ('Pyromancy'), ('Telekinesis'), ('Telepathy'), ('Librarius'), ('Daemonology (Malefic)'),
+    ('Daemonology (Sanctic)'), ('Ectomancy'), ('Fulmination'), ('Obscuration'), ('Vengeance'), ('Machinamantia'), ('Geomortis'),
+    ('Terramancie'), ('Scriptumantia'), ('Telethesia'), ('Promethean'), ('Geokinesis'), ('Indomitus'), ('Interromancy'),
+    ('Sanguinary'), ('Stormspeaking'), ('Technomancy'), ('Tempestas'), ('Umbramancy'), ('Xenopurge'), ('Dark Hereticus'),
+    ('Heretech'), ('Malefic'), ('Sinistrum'), ('Noctic'), ('Nurgle'), ('Contagion'), ('Warprot'), ('Change'), ('Tzeentch'),
+    ('Pandaemoniac'), ('Slaanesh'), ('Soulstain'), ('Runes of Fortune'), ('Runes of Battle'), ('Runes of Fate'), ('Revenant'),
+    ('Phantasmancy'), ('Power of the Waaagh!'), ('Beasthead')
+
+;
+
+-- Psychic Powers table
+INSERT INTO psychic_powers (Domains_id, Powers_name, Powers_type, Powers_cost, Powers_desc)
+VALUES
+    (1, 'Endurance', 'Blessing', 6, 'If manifested, select one other friendly unit within 24" of the Psyker. Until the end of this Psychic phase, models in that unit gain the Eternal Warrior, Feel No Pain (4+) and Relentless special rules.'),
+    (1, 'Iron Arm', 'Blessing', 5, 'If manifested, then until the start of your next Psychic phase the Psyker has +3 to his Strength and Toughness and he gains the Smash special rule.'),
+    (1, 'Warp Speed', 'Blessing', 5, 'If manifested, then until the start of your next Psychic phase the Psyker has +3 to his Initiative and Melee Weapon Attacks and he gains the Fleet special rule.')
+;
+
+-- Factions table
+INSERT INTO factions (Faction_name, Faction_keywords)
+VALUES
+    ('Adeptus Astartes - Black Templars', 'IMPERIUM, ADEPTUS ASTARTES, BLACK TEMPLARS'),
+    ('Adeptus Astartes - Salamanders', 'IMPERIUM, ADEPTUS ASTARTES, SALAMANDERS'),
+    ('Adeptus Astartes - Blood Angels', 'IMPERIUM, ADEPTUS ASTARTES, BLOOD ANGELS'),
+    ('Adeptus Astartes - Night Hawks', 'IMPERIUM, ADEPTUS ASTARTES, NIGHT HAWKS'),
+    ('Adeptus Astartes - Deathwatch', 'IMPERIUM, ADEPTUS ASTARTES, DEATHWATCH'),
+    ('Adepta Sororitas - Order of Our Martyred Lady', 'IMPERIUM, ADEPTUS MINISTORUM, ADEPTA SORORITAS, ORDER OF OUR MARTYRED LADY'),
+    ('Agents of the Imperium', 'IMPERIUM, AGENTS OF THE IMPERIUM'),
+    ('Adeptus Mechanicus', 'IMPERIUM, ADEPTUS MECHANICUS, CULT MECHANICUS, MARS'),
+    ('Imperial Knights', 'IMPERIUM, IMPERIAL KNIGHTS, QUESTOR MECHANICUS, HOUSE VULKER'),
+    ('Chaos Daemons', 'CHAOS, LEGIONES DAEMONICA'),
+    ('Heretic Astartes - Night Lords', 'CHAOS, HERETIC ASTARTES, TRAITORIS ASTARTES, NIGHT LORDS'),
+    ('Heretic Astartes - Death Guard', 'CHAOS, HERETIC ASTARTES, TRAITORIS ASTARTES, NURGLE, DEATH GUARD'),
+    ('Heretic Astartes - Thousand Sons', 'CHAOS, HERETIC ASTARTES, TRAITORIS ASTARTES, TZEENTCH, THOUSAND SONS'),
+    ('Heretic Astartes - World Eaters', 'CHAOS, HERETIC ASTARTES, TRAITORIS ASTARTES, KHORNE, WORLD EATERS'),
+    ('Craftworld - Biel-Tan', 'AELDARI, ASURYANI, BIEL-TAN'),
+    ('Drukhari', 'AELDARI, DRUKHARI'),
+    ('Necrons - Mephrit', 'NECRONS, MEPHRIT'),
+    ('Orks - Snakebites', 'ORK, SNAKEBITES')
+;
+
+-- Factions Aptitudes table
+INSERT INTO faction_aptitudes (Faction_id, Faction_aptitude_name, Faction_aptitude_desc)
+VALUES
+    (ARRAY[1,2], 'Oath of the Moment', 'At the start of your Command phase, select one unit from your opponent’s army. Until the start of your next Command phase, each time a model from your army with this ability makes an attack that targets that enemy unit, you can re-roll the Hit roll and you can re-roll the Wound roll.'),
+    (ARRAY[1], 'Righteous Zeal', 'If a Black Templars unit suffers one or more casualties in the Shooting phase or as a result of Overwatch, all models in that unit gain the Counter-attack and Rage special rules until the end of the turn.')
+;
+
+-- Units table
+INSERT INTO units (Unit_name, Faction_id, Unit_type, Nb_fig, M, CT, CC, S, T, W, A, I, Cdt, OC, Svg, Invul_svg,
+                   Keywords, Aptitude_name, Aptitude_desc, Rule_id, Domains_id, U_Pts)
+VALUES
+    ('CHAPLAIN GRIMALDUS', 1, 'Infantry', 1, '6"', '2+', '2+', 4, 4, 5, 4, 4, '6+', 1, '3+', '4++',
+     'INFANTRY, CHARACTER, PRIMARIS, PRIEST, MASTER OF SANCTITY, CHAPLAIN, GRIMALDUS',
+     ARRAY['Litanies of the Devout','Unmatched Zeal'],
+     ARRAY['While Chaplain Grimaldus is leading a unit, each time a model in that unit makes a melee attack, you can re-roll the Hit roll.',
+        'Friendly Black Templars units within 6" of Chaplain Grimaldus have the Zealot special rule.'],
+     ARRAY[1,2], ARRAY[1,2], 150)
+;
+
+-- Weapons table
+INSERT INTO weapons (Faction_id, Weapon_name, Weapon_type, Rule_id, Range, A, S, PA, D, W_Pts)
+VALUES
+    (1, 'Bolter', 'Rapid Fire 1', ARRAY[1,2], '24"', 2, 4, 0, 1, 0),
+    (2, 'Dawnbringer', 'Melee', ARRAY[1], 'Melee', 'User', '+3', '-5', 'D3+3', 0)
+;
