@@ -2,12 +2,12 @@
 
 -- Fullfill Specific Tables --
 
--- Units table
+-- Units table -- Unit_type could be: Infantry, Bikes - Jetbikes, Artillery, Jumps, Jet Packs, Beasts, Cavalry, Monsters, Vehicles, Flyers
 INSERT INTO units (Unit_name, Faction_id, Unit_type, Nb_fig, M, BS, WS, S, T, W, A, I, Ld, OC, Sv, Invul_sv,
                    Keywords, Aptitude_name, Aptitude_desc, U_Pts)
 VALUES
     ('CHAPLAIN GRIMALDUS', 1, 'Infantry', 1, '6"', '2+', '2+', 4, 4, 5, 4, 4, '6+', 1, '3+', '4++',
-     'INFANTRY, CHARACTER, PRIMARIS, PRIEST, MASTER OF SANCTITY, CHAPLAIN, GRIMALDUS',
+     'INFANTRY, CHARACTER, PRIEST, MASTER OF SANCTITY, CHAPLAIN, GRIMALDUS',
      ARRAY['Litanies of the Devout','Unmatched Zeal'],
      ARRAY['While Chaplain Grimaldus is leading a unit, each time a model in that unit makes a melee attack, you can re-roll the Hit roll.',
         'Friendly Black Templars units within 6" of Chaplain Grimaldus have the Zealot special rule.'],
@@ -35,7 +35,7 @@ VALUES
     (1, 2)
 ;
 
--- Weapons table
+-- Weapons table -- Weapon type could be: Melee, Assault, Heavy, Ordnance, Pistol, Rapid Fire, Savo, Bombs or Primary
 INSERT INTO weapons (group_faction_id, Weapon_name, Weapon_type, Range, A, S, AP D, W_Pts)
 VALUES
     (1, 'Bolt Pistol', 'Pistol', '12"', '1', '4', '0', '1', 0),
