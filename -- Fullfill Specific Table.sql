@@ -3,7 +3,7 @@
 -- Fullfill Specific Tables --
 
 -- Units table
-INSERT INTO units (Unit_name, Faction_id, Unit_type, Nb_fig, M, CT, CC, S, T, W, A, I, Cdt, OC, Svg, Invul_svg,
+INSERT INTO units (Unit_name, Faction_id, Unit_type, Nb_fig, M, BS, WS, S, T, W, A, I, Ld, OC, Sv, Invul_sv,
                    Keywords, Aptitude_name, Aptitude_desc, U_Pts)
 VALUES
     ('CHAPLAIN GRIMALDUS', 1, 'Infantry', 1, '6"', '2+', '2+', 4, 4, 5, 4, 4, '6+', 1, '3+', '4++',
@@ -36,7 +36,7 @@ VALUES
 ;
 
 -- Weapons table
-INSERT INTO weapons (group_faction_id, Weapon_name, Weapon_type, Range, A, S, PA, D, W_Pts)
+INSERT INTO weapons (group_faction_id, Weapon_name, Weapon_type, Range, A, S, AP D, W_Pts)
 VALUES
     (1, 'Bolt Pistol', 'Pistol', '12"', '1', '4', '0', '1', 0),
     (1, 'Boltgun', 'Rapid Fire 1', '24"', '2', '4', '0', '1', 0),
