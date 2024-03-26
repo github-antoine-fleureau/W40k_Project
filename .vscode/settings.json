@@ -9,5 +9,8 @@
             "name": "localhost",
             "database": "postgres"
         }
-    ]
+    ],
+    "editor.cursorSmoothCaretAnimation": "explicit",
+    "editor.formatOnPaste": true,
+    "editor.formatOnType": true
 }
