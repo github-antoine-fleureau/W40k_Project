@@ -1,6 +1,5 @@
 -- Active: 1710930161670@@127.0.0.1@5432@postgres
 
-
 -- Fulfill Generic Tables --
 
 -- Special Rules table
@@ -545,6 +544,16 @@ VALUES
     ((SELECT Domains_id FROM psychic_powers_domains WHERE Domains = 'Infernal Pacts'), 'Diabolic Savant', 'Prayer', 7, 'If this pact is successful, at the start of your next Psychic phase, you generate 1 additional Psychic dice. In your next Psychic phase, you can re-roll Psychic tests taken for this model.'),
     ((SELECT Domains_id FROM psychic_powers_domains WHERE Domains = 'Infernal Pacts'), 'Glimpse of Eternity', 'Prayer', 7, 'If this pact is successful, until the start of your next Command phase you can re-roll one dice you have rolled. You cannot re-roll any rolls related to the mission.'),
     ((SELECT Domains_id FROM psychic_powers_domains WHERE Domains = 'Infernal Pacts'), 'Malefic Maelstrom', 'Prayer', 7, 'If this pact is successful, select one friendly unit within 24" of and visible to this model. Until the start of your next Command phase, each time a model in that unit makes a ranged attack, add 1 to the Strength characteristic of that attack.')
+;
+
+-- Group Factions table
+INSERT INTO group_factions (group_faction_name)
+VALUES
+    ('IMPERIUM'),
+    ('CHAOS'),
+    ('AELDARI'),
+    ('NECRONS'),
+    ('ORKS')
 ;
 
 -- Factions table

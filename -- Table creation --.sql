@@ -25,12 +25,18 @@ CREATE TABLE psychic_powers (
 	Powers_desc TEXT NOT NULL
 );
 
+-- Group Factions table
+CREATE TABLE group_factions (
+    Group_faction_id SERIAL PRIMARY KEY,
+    Group_faction_name VARCHAR(100) NOT NULL
+);
+
 -- Factions table
 CREATE TABLE factions (
     Faction_id SERIAL PRIMARY KEY,
     Faction_name VARCHAR(100) NOT NULL,
 	Faction_keywords VARCHAR(100) NOT NULL,
-    group_faction_id INT NOT NULL,
+    group_faction_id INT NOT NULL REFERENCES group_factions(Group_faction_id),
     group_faction_name VARCHAR(100) NOT NULL
 );
 
@@ -82,14 +88,14 @@ CREATE TABLE units_psy (
 -- Weapons table
 CREATE TABLE weapons (
     Weapon_id SERIAL PRIMARY KEY,
-    Faction_id INT NOT NULL REFERENCES factions(Faction_id),
+    group_faction_id INT NOT NULL REFERENCES group_factions(group_faction_id),
     Weapon_name VARCHAR(100) NOT NULL,
-    Weapon_type VARCHAR(50),
-    Range VARCHAR(50),
-	A VARCHAR(50),
-	S VARCHAR(50),
-	AP INT,
-    D VARCHAR(50),
+    Weapon_type VARCHAR(50) NOT NULL,
+    Range VARCHAR(10) NOT NULL,
+	A VARCHAR(10) NOT NULL,
+	S VARCHAR(10) NOT NULL,
+	AP VARCHAR(10) NOT NULL,
+    D VARCHAR(10) NOT NULL,
     W_Pts INT
 );
 
