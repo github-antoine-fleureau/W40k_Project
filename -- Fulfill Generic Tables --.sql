@@ -51,7 +51,7 @@ VALUES
     1   -- Terrible Accident! Teleporting units are lost in the Warp, deep striking jump units are shot down, or some other suitably dramatic event occurs. The entire unit is destroyed!
     2-3 -- Misplaced. Your coordinates were off, or the ennemy jammed your instruments. Your opponent can deploy the unit anywhere on the table (excluding impassable terrain), in a valid Deep Strike formation, without scatter. Units on a misplaced Transport can disembark normaly.
     4-6 -- Delayed. Because of mechanical failure or ennemy action, the reinforcements are delayed. Delayed. Because of mechanical failure or ennemy action, the reinforcements are delayed. The unit is placed in Ongoing Reserves.'),
-    ('Destroyers', 'Weapons with a D in place of Strength are Destroyer weapons. Roll To Hit as usual. If the attack lands, roll on the table below instead of rolling for Wounds or armor penetration. Cover and invulnerable saves apply unless a Devastating Hit or Deathblow result occurs. Treat Destroyer hits as Strength 15 for Instant Death. Extra wounds/hull points from Destroyer hits do not transfer to other models in the unit.
+    ('Destroyers', 'Destroyer weapons roll To Hit as usual, then roll on the table below instead of rolling for Wounds or armor penetration. Cover and invulnerable saves apply unless a Devastating Hit or Deathblow result occurs.
     Vehicle or Building:
     1   -- Lucky Escape: The model is unharmed.
     2-5 -- Solid Hit: The model suffers a penetrating hit that causes it to lose D3 Hull Points instead of 1.
@@ -120,7 +120,7 @@ VALUES
     ('Lethal hit', 'Each time an attack is made with such a weapon, an unmodified 6 To Hit automatically wounds the target.'),
     ('Lightning Reflexes', 'A model with this special rule has a 4+ invulnerable save. In addition, they do not suffer the penalty to their Initiative for charging enemies through difficult terrain.'),
     ('Lone Operative', 'Unless part of an Attached unit, an Independent Character with this rule can only be selected as the target of a ranged attack if the attacking model is within 12".'),
-    ('Master-crafted', 'Weapons with the Master-crafted special rule allow the bearer to reroll one failed roll To Hit per turn with that weapon.'),
+    ('Master-crafted', 'Weapons with the Master-crafted special rule gain +1D and allow the bearer to reroll one failed roll To Hit per turn with that weapon.'),
     ('Melta', 'Ranged weapons with this rule get an extra D6 for penetrating vehicle armor within half their range. Attacks within half range also deal extra damage as per the weapons profile. For weapons with both Melta and Blast, measure from the blast center after scatter. If it is within half range, roll an additional D6 for armor penetration; otherwise, roll as normal.'),
     ('Mighty Bulwark', 'When a building with this special rule suffers a penetrating hit, there is a 1 modifier to the roll on the Building Damage table.'),
     ('Missile Lock', 'A model with this special rule re-rolls failed To Hit rolls when shooting any weapon that has the One Use Only special rule. If a model with this special rule is shooting a weapon that has both the One Use Only and Blast special rules, that shot will instead'),
