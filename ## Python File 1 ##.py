@@ -1,9 +1,13 @@
-## Python File 1 ##
-
-import sqlite3
+import psycopg2
 
 # Connexion à la base de données
-conn = sqlite3.connect('votre_base_de_donnees.db')
+conn = psycopg2.connect(
+    dbname="PostgreSQL 16",
+    user="postgres",
+    password="Olicah@y87",
+    host="localhost",
+    port="5432"
+)
 cursor = conn.cursor()
 
 # Fonction pour récupérer tous les noms uniques de weapons
@@ -15,7 +19,7 @@ def get_unique_weapon_names():
 def get_weapon_ids_by_names(names):
     weapon_ids = []
     for name in names:
-        cursor.execute("SELECT Weapon_id FROM weapons WHERE Weapon_name = ?", (name,))
+        cursor.execute("SELECT Weapon_id FROM weapons WHERE Weapon_name = %s", (name,))
         result = cursor.fetchone()
         if result:
             weapon_ids.append(result[0])
