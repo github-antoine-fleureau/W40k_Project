@@ -1,39 +1,53 @@
 import psycopg2
 
-# Connexion à la base de données
+# Connect to the database
 conn = psycopg2.connect(
-    dbname="PostgreSQL 16",
+    dbname="postgres",
     user="postgres",
     password="Olicah@y87",
     host="localhost",
     port="5432"
 )
-cursor = conn.cursor()
 
-# Fonction pour récupérer tous les noms uniques de weapons
-def get_unique_weapon_names():
-    cursor.execute("SELECT DISTINCT Weapon_name FROM weapons")
-    return [row[0] for row in cursor.fetchall()]
+# Create a cursor
+cur = conn.cursor()
 
-# Fonction pour récupérer les weapon_id en fonction des weapon_name
-def get_weapon_ids_by_names(names):
-    weapon_ids = []
-    for name in names:
-        cursor.execute("SELECT Weapon_id FROM weapons WHERE Weapon_name = %s", (name,))
-        result = cursor.fetchone()
-        if result:
-            weapon_ids.append(result[0])
-    return weapon_ids
+try:
+    # Execute the SQL query
+    cur.execute("""
+        SELECT w.weapon_id, w.weapon_type, r.rule_id
+        FROM weapons w
+        LEFT JOIN special_rules r ON w.weapon_type LIKE '%' || r.Rule_name || '%'
+    """)
 
-# Récupération de tous les noms uniques de weapons
-unique_weapon_names = get_unique_weapon_names()
+    # Fetch all rows
+    rows = cur.fetchall()
 
-# Récupération des weapon_id
-weapon_ids = get_weapon_ids_by_names(unique_weapon_names)
+    # Insert rows into the weapon_rules table
+    for row in rows:
+        weapon_id, weapon_type, rule_id = row
+        if rule_id:
+            # If multiple rules found in weapon_type separated by " - ", duplicate rows
+            parts = weapon_type.split(" - ")
+            for part in parts:
+                cur.execute("""
+                    INSERT INTO weapons_rules (weapon_id, rule_id)
+                    VALUES (%s, %s)
+                """, (weapon_id, rule_id))
+        else:
+            print(f"Rule not found for: {weapon_type}")
 
-# Affichage des weapon_id
-print("Weapon IDs correspondants aux noms de weapons uniques :")
-print(weapon_ids)
+    # Commit the transaction
+    conn.commit()
 
-# Fermeture de la connexion
-conn.close()
+    print("Data inserted successfully.")
+
+except Exception as e:
+    # Rollback the transaction in case of an error
+    conn.rollback()
+    print("Error:", e)
+
+finally:
+    # Close the cursor and connection
+    cur.close()
+    conn.close()
