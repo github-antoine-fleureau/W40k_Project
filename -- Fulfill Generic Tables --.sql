@@ -1,10 +1,9 @@
--- Active: 1710930161670@@127.0.0.1@5432@postgres
-
+-- Active: 1711638446495@@127.0.0.1@5432@postgres@public
 -- Fulfill Generic Tables --
-
 -- Special Rules table
 INSERT INTO special_rules (Rule_name, Rule_desc)
 VALUES
+    ('Absorbed Warp Charge', 'When firing with this weapon, first add up the combined mastery levels of all Psyker units, friend or foe, that are within 12" of the firer (though Psyker units that are embarked within buildings or Transports do not count), and pick up that many dice. You can then add up to 3 more dice to this hand by removing them from your own Warp Charge pool. The total number of dice in your hand is the number of shots the weapon now fires.'),
     ('Acute Senses', 'If a unit contains at least one model with this special rule, and that unit arrives on a random table edge (due to Outflank, or other special rules), then you can choose which table edge they arrive from.'),
     ('Adamantium Will', 'A unit that contains at least one model with this special rule receives a +1 bonus to Deny the Witch tests.'),
     ('And They Shall Know No Fear', 'A unit that contains at least one model with this special rule automatically passes Fear and Regroup tests. When it Regroups, the unit does not make the 3" Regroup move, but can instead move, shoot (or run) and declare charges normally in that turn. Furthermore, if a unit containing one or more models with this special rule is caught by a Sweeping Advance, they are not destroyed, but remain locked in combat instead.'),
@@ -22,6 +21,7 @@ VALUES
     Apocalyptic Barrage: An Apocalyptic Barrage follows all of the rules for a Barrage weapon, but uses the clover-shaped apocalyptic barrage marker. Before the marker is placed, the attacker is allowed to rotate the marker about its centre to maximise the number of models that could potentially be hit. Place the marker and roll for scatter in the same way you would for a Blast. If the marker scatters, be careful to maintain the same orientation as you move it.
     Once the final position of the marker has been determined, roll a number of dice equal to the number of attacks on the weapon’s profile. So, for example, with a weapon with the type ‘Heavy 4, Apocalyptic Barrage’, you would roll four dice. Each dice roll corresponds to a ‘strike’ on one of the circles on the apocalyptic barrage marker. For example, each roll of a 2 indicates a strike on circle number 2. Resolve the strikes as for a Multiple Barrage, as if each were a Barrage attack that had landed on that circle and hit all the models underneath it. To determine Wound allocation and cover saves, always assume the shot is coming from the centre of the entire apocalyptic barrage marker.'),
     ('Bladestorm', 'When firing a weapon with this special rule, a To Wound roll of 6 wounds automatically, regardless of the target’s Toughness, and is resolved at AP 4'),
+    ('Blade Whip', 'Models fighting with a razorflail re-roll all failed To Hit rolls in close combat.'),
     ('Blast', 'To use a Blast weapon, place the blast marker over the target models base or hull within range. Roll D3 for scatter and add the firers Weapon Skill. Hits are resolved normally, allocated to models under the marker, and wounds go to the closest model in t he target unit, regardless of line of sight.
     Multiple Blasts: If a unit is firing more than one shot with the Blast special rule, scatter each shot, one at a time, as described above and determine how many hits are scored with each individual blast marker. After the last shot, add up the total number of hits scored and roll all the To Wound rolls as normal.
     Blast Weapons and Re-rolls: If a model can re roll its rolls To Hit and chooses to do so after firing a Blast weapon, the player must re roll both the scatter dice and the D 3
@@ -39,17 +39,22 @@ VALUES
     ('Bulky', 'Bulky models count as two models for the purposes of Transport Capacity.models count as two models for the purposes of Transport Capacity.
     Very Bulky: Very Bulky models instead count as three models.Very Bulky models instead count as three models.
     Extremely Bulky: Extremely Bulky models instead count as five models.Extremely Bulky models instead count as five models.'),
+    ('Burst Pistol', 'A weapon with this special rule fires five shots when fired, but is otherwise treated as a Pistol.'),
+    ('Colossal', 'A model fighting with this weapon Piles in and fights at Initiative step 1.'),
     ('Concussive', 'A model that suffers one or more unsaved Wounds from a weapon with this special rule is reduced to Initiative 1 until the end of the following Assault phase.'),
-    ('Counter-Attack','If a unit contains at least one model with this special rule, and that unit is charged, every model with the Counter-Attack special rule in the unit gets +1 Attack until the end of the phase.
+    ('Counter-Attack', 'If a unit contains at least one model with this special rule, and that unit is charged, every model with the Counter-Attack special rule in the unit gets +1 Attack until the end of the phase.
     If, when charged, the unit was already locked in combat, the Counter-Attack special rule has no effect.'),
+    ('Crawling Fire', 'The firer may move the Blast marker up to 2" in any direction so long as this would cover more models than initialy placed.'),
     ('Crusader', 'A unit with this rule rolls an extra die for Run moves and picks the highest result. It also adds D3 to its Sweeping Advance totals (roll each time).'),
-    ('Daemon', 'Models with the Daemon special rule have a 5++ invulnerable save and have the Fear special rule.'),
+    ('Daemon', 'Models with the Daemon specialA model fighting with this weapon Piles In and fights at Initiative step 1. rule have a 5++ invulnerable save and have the Fear special rule.'),
+    ('Decapiting Blow', 'Any To Wound rolls of 6 made with this weapon have the Instant Death special rule.'),
     ('Deep Strike', 'To Deep Strike, units must have the Deep Strike special rule and start in Reserve, clearly specified to the opponent. Some units must always Deep Strike. During Deep Strike, place one model and scatter. Other models form circles around it. They treat difficult terrain as dangerous. Upon arrival, they cannot move further, except to disembark from a Transport. Units arriving in ruins start on the ground floor; in non--ruined buildings, they start on top or treat it as impassable.
     In the arrival turn"""s Shooting phase, units can fire with -1 to CT and count as having moved. In the Assault phase, they can charge but count as in difficult terrain. Transport vehicles with Deep Strike can Deep Strike regardless of passenger Deep Strike ability.
     Deep Strike Mishaps: Deep Striking carries risks; if any models cannot safely deploy due to obstacles or enemies, a Mishap occurs, affecting both the unit and any embarked models in a Transport.
     1   -- Terrible Accident! Teleporting units are lost in the Warp, deep striking jump units are shot down, or some other suitably dramatic event occurs. The entire unit is destroyed!
     2-3 -- Misplaced. Your coordinates were off, or the ennemy jammed your instruments. Your opponent can deploy the unit anywhere on the table (excluding impassable terrain), in a valid Deep Strike formation, without scatter. Units on a misplaced Transport can disembark normaly.
     4-6 -- Delayed. Because of mechanical failure or ennemy action, the reinforcements are delayed. Delayed. Because of mechanical failure or ennemy action, the reinforcements are delayed. The unit is placed in Ongoing Reserves.'),
+    ('Deflagrate', 'After resolved this weapon attacks, count the number of unsaved Wounds caused on the target unit. Immediately resolve a number of additional automatic Strength 6 AP-1 D1 hits on the same unit equal to the number of unsaved Wounds. Models in the target unit must still be in range in order for these additional hits to take effect. Any further Wounds caused as a result of this special rule do not cause any further hits.'),
     ('Destroyers', 'Destroyer weapons roll To Hit as usual, then roll on the table below instead of rolling for Wounds or armor penetration. Cover and invulnerable saves apply unless a Devastating Hit or Deathblow result occurs.
     Vehicle or Building:
     1   -- Lucky Escape: The model is unharmed.
@@ -60,8 +65,12 @@ VALUES
     2-5 -- Seriously Wounded: The model suffers a hit that wounds automatically and causes it to lose D3 Wounds instead of 1.
     6   -- Deathblow: The model suffers a hit that wounds automatically and causes it to lose D6+6 Mortal Wounds'),
     ('Devastating Wound', 'Each time an attack is made with such a weapon, unmodified 6+ To Wounds inflict Mortal Wounds instead of classical wounds.'),
+    ('Distort Scythe', 'When rolling on the Destroyer Weapon Attack table for a weapon that has this special rule, subtract 1 from the result of the D6 roll (to a minimum of 1). Furthermore, a weapon with this special rule is assumed to have a Strength of 15 for the necessaries rule.'),
+    ('Earthshatter', 'While attacking with this weapon, you can choose to forfeit his usual close combat attacks in order to place a Blast (3") Template anywhere in base-to-base contact that does not cover any friendly models. All models under the Template suffer a single automatic Strength 8 AP -3 Degats 3 Hit with the Strikedown special rule.'),
+    ('Entropic Strike', 'If a model has this special rule, or is attacking with a Melee weapon that has this special rule, a To Wound roll of a 6 wounds automatically, regardless of the target’s Toughness. Against vehicles and buildings, an Armour Penetration roll of 6 that does not cause a penetrating hit automatically causes a glancing hit.'),
     ('Eternal Warrior', 'If a model with this special rule suffers an unsaved Wound from an attack that inflicts Instant Death, it only reduces its Wounds by D3, instead of automatically reducing its Wounds to 0.'),
     ('Extra Attacks', 'Each time the bearer of such a weapon fights, it gains 1 attack with that weapon in addition to any other bonus.'),
+    ('Fatal Precision', 'Attacks with this special rule gain the Precision strikes and Devastating Wounds special rules on 4+.'),
     ('Fear', 'At the beginning of each Fighting Phase, if a unit in base contact with Fear causing ennemy models fails a Leadership test (Fear test), their Weapon Skill is reduced to 6+ for that phase. Fear causing models are not immune and must also take Fear tests if in contact with such enemies.'),
     ('Fearless', 'Fearless units auto pass Pinning, Fear, regroup tests, and Morale checks, but cannot Go to Ground or opt to fail Morale checks due to Our Weapons Are Useless. If a unit Goes to Ground and becomes Fearless, the effects of Going to Ground end.'),
     ('Feel No Pain', 'Models with this rule can make a special Feel No Pain roll when they suffer an unsaved Wound, except against Destroyer attacks or those with the Instant Death rule.
@@ -101,6 +110,7 @@ VALUES
     ('Heavy', 'Each time an attack is made with such a weapon, if the attacking model unit Remained Stationary this turn, add 1 to that attacks Hit roll.'),
     ('Hit & Run', 'Units with this rule can choose to disengage from close combat at the end of any Assault phase. They must take an Initiative test to do so. If they pass, they roll 3D6 to determine the distance they can move away from the ennemy. If the distance is enough to move the entire unit over 1" away from all ennemy units, they break away and move in the chosen direction. No Sweeping Advance rolls are made, but ennemy units that are no longer engaged immediately Consolidate D6" D6". The move ignores models they were in combat with. This move is not slowed by difficult terrain but takes Dangerous Terrain tests. It cannot move into base or hull contact with ennemy units and stops 1" away. If both sides have units with this rule, roll off to determine who disengages first, then alternate. If the last unit no longer in combat ends up not in combat, it Consolidates instead.'),
     ('Ignores Cover', 'Cover saves cannot be taken against Wounds, glancing hits, or penetrating hits caused by weapons with the Ignores Cover special rule.'),
+    ('Impale', 'A model fighting with an a weapon with this special rule re-rolls all To Wound rolls of a 1 when fighting in close combat.'),
     ('Independent Character', 'Independent Characters can join units, except those with vehicles or Monsters. They can also join other Independent Characters.
     Joining and Leaving a Unit: Independent Characters can start the game with a unit or join one during the Movement phase by moving within 2" of it. They cannot join units in Reserve, locked in combat, Falling Back, or Gone to Ground. Once joined, they are treated as part of the unit for all rules but retain their individual character rules. Leaving a unit is only possible during the Movement phase by moving out of unit coherency.
     Look Out, Sir: Independent Characters pass Look Out, Sir rolls on a 2+
@@ -117,14 +127,22 @@ VALUES
     ('Jink', 'When a unit with any models with the Jink special rule is selected as a target for a shooting attack, you may declare that it will Jink. The decision must be made before any To Hit rolls have been made. If the unit Jinks, all models in the unit with this special rule gain a 4+ cover save until the start of their next Movement phase, but they can only fire Snap Shots until the end of their next turn.'),
     ('Lance', 'Weapons with the Lance special rule count vehicle Armor Values that are higher than 15 as 15. Each time an attack is made with such a weapon, if the bearer made a Charge move this turn, add 1 to that attack’s Wound roll. Lances have +2 in Strength on a turn in which a model charges.'),
     ('Lethal hit', 'Each time an attack is made with such a weapon, an unmodified 6 To Hit automatically wounds the target.'),
+    ('Line of Effect', 'While firing with this weapon, draw a line 1mm wide adn 18" long, from this unit in any direction, to determine the area of effect. All units crossed by the line suffer a number of hits equal to the number of models in the unit the line crosses'),
+    ('Lingering Death', 'When a weapon with this special rule is used, after the attack is resolved leave the Blast marker in play for the rest of the game. This area is now treated as Dangerous Terrain for any models except Vehicle not Open-topped.'),
     ('Lightning Reflexes', 'A model with this special rule has a 4+ invulnerable save. In addition, they do not suffer the penalty to their Initiative for charging enemies through difficult terrain.'),
     ('Lone Operative', 'Unless part of an Attached unit, an Independent Character with this rule can only be selected as the target of a ranged attack if the attacking model is within 12".'),
+    ('Luminagen', 'A unit that suffers one or more unsaved Wounds, glancing or penetrating hits caused by a weapon with this special rule counts its cover saves as being 1 point worse than normal until the end of the phase. Furthermore, units can re-roll the dice to determine their charge range against the afflicted unit until the end of the turn.'),
     ('Master-crafted', 'Weapons with the Master-crafted special rule gain +1D and allow the bearer to reroll one failed roll To Hit per turn with that weapon.'),
+    ('Melee', 'Melee weapons can only be used during the Fight Phase'),
     ('Melta', 'Ranged weapons with this rule get an extra D6 for penetrating vehicle armor within half their range. Attacks within half range also deal extra damage as per the weapons profile. For weapons with both Melta and Blast, measure from the blast center after scatter. If it is within half range, roll an additional D6 for armor penetration; otherwise, roll as normal.'),
     ('Mighty Bulwark', 'When a building with this special rule suffers a penetrating hit, there is a 1 modifier to the roll on the Building Damage table.'),
     ('Missile Lock', 'A model with this special rule re-rolls failed To Hit rolls when shooting any weapon that has the One Use Only special rule. If a model with this special rule is shooting a weapon that has both the One Use Only and Blast special rules, that shot will instead'),
+    ('Molecular Realignment Field', 'Successful invulnerable saving throws made against Wounds inflicted by a weapon with this rule must be re-rolled.'),
+    ('Monofilament', 'When rolling To Wound for a weapon that has this special rule, use the target’s Initiative instead of its Toughness (note that the model’s Toughness is still used to determine whether an attack has the Instant Death special rule). In addition, if a 6 is rolled To Wound when attacking with a weapon that has this special rule, the Wound is resolved at AP2 unless the weapon is AP1.'),
     ('Monster Hunter', 'A unit that contains at least one model with this special rule re rolls all failed To Wound rolls against Monster.'),
+    ('Moonsilver', 'Any wound caused against a model with the Daemon or Psyker special rules is instead counted as two wounds. Wounds caused in excess of the models remaining Wounds do not spill over to other models.'),
     ('Move Through Cover', 'A unit that contains at least one model with this special rule rolls an extra D6 when rolling to move through difficult terrain and is not slowed by charging through difficult terrain. In most circumstances, this will mean that, when moving, the unit rolls 3D6 and picks the highest roll. Furthermore, a model with the Move Through Cover special rule automatically passes Dangerous Terrain tests.'),
+    ('Neural Shock', 'Hits caused by this weapon always wound on a 4+. This special rule has no effects on vehicles or buildings.'),
     ('Night Fighting', 'If a mission has the Night Fighting special rule, either player can declare that they wish to fight the battle at night. If either player does so, roll a D6 before deployment: on a roll of 4+, the Night Fighting special rule is in effect during the game. While the Night Fighting mission special rule is in effect, all units have the Stealth special rule.'),
     ('Night Vision', 'A unit that contains at least one model with this special rule ignores the effects of Night Fighting.'),
     ('One Use Only', 'A weapon or ability with this special rule can only be used once during a battle.'),
@@ -140,12 +158,16 @@ VALUES
     ('Primary', 'A model using a Primary weapon shoots its designated number of times, even after moving. It can shoot and then charge into close combat. When rolling for armor penetration with hits from a Primary weapon, roll two dice and select the higher result. If it normally rolls 2D6 for penetration, roll three dice and select the two highest results.'),
     ('Psychic Pilot', 'A vehicle with this special rule is a Psyker, typically with a Mastery Level (Mastery Level 1 if not specified). It follows the rules for generating and manifesting psychic powers, treating its Leadership as 10 when necessary.'),
     ('Psyker', 'A model with this special rule is a Psyker. This rule is typically presented with a Mastery Level, shown in brackets if no Mastery Level is shown then that model has a Mastery Level of 1. Rules for generating and manifesting psychic powers can be found in the Psychic phase section.'),
+    ('Psy-Shock', 'Any Psyker that takes an unsaved Wound from a weapon with this rule suffers the Perils of the Warp in addition to any other effects.'),
+    ('Pulverise', 'If the To Wound roll for an attack with a weapon with this rule is 6, the attack has the Instant Death special rule.'),
     ('Rage', 'In a turn in which a model with this special rule charges into combat, it gains +2 Attacks for charging, rather than +1. A model that has made a disordered charge that turn receives no benefit from Rage.'),
     ('Rampage', 'Models with Rampage gain +D3 attacks at the start of the Fighting Phase if their combat has more ennemy models than friendly ones. Roll once to determine the number of bonus Attacks for all Rampaging models in that combat. Disordered charges grant no benefit from Rampage.'),
     ('Rapid Fire', 'Each time such a weapon targets a unit within half that weapon’s range, the Attacks characteristic of that weapon is increased by the number in the profile of the weapon. Models that shoot with Rapid Fire weapons in the Shooting phase cannot charge in the ensuing Assault phase.'),
+    ('Reaping Blow', 'Model using a weapon with this special rule fight at -1 Initiative in Fight phase. In addition, if the wielder is in base with more than one ennemy model at the Initiative step in wich he fight, he gain +1 Melee Weapon Attack.'),
     ('Relentless', 'Relentless models can shoot with Heavy, Salvo or Ordnance weapons, counting as stationary, even if they moved in the previous Movement phase. They are also allowed to charge in the same turn they fire Heavy, Ordnance, Rapid Fire or Salvo weapons.'),
     ('Rending', 'Models with the Rending special rule have them To Wound rolls of 6 automatically wound regardless of Toughness, with these wounds resolved at AP 4. The same applies to shooting attacks with Rending weapons. Against vehicles, each armor penetration rolls of 6 allows a further D3 to be rolled, added to the total, and resolved using the weapon’s AP value.'),
     ('Repel the ennemy', 'Models disembarking from Access Points on a building can charge on the turn they do so, even on a turn the building was destroyed.'),
+    ('Ritual Pair', 'A model fighting with a shardnet and impaler always gains the +1 bonus Attack for fighting with more than one Melee weapon. A model fighting with a shardnet and impaler re-rolls all To Hit and To Wound rolls of 1 in close combat.'),
     ('Salvo', 'Salvo weapons have two numbers on their profile separated by a /. When a model with a Salvo weapon moves and fires at a target up to half its maximum range away, it uses the first number of shots. If the model remains stationary, it can shoot up to the weapon’s maximum range, using the second number of shots. However, models using Salvo weapons in the Shooting phase cannot charge in the subsequent Assault phase.'),
     ('Scout', 'Before the first players turn begins, units with this special rule can redeploy. Each model can make a normal move, but Scouts must stay over 12"" from ennemy units and cannot charge in the first turn. If both sides have Scouts, roll off to determine who goes first. Then, alternate redeploying Scout units. Units inside Dedicated Transports do not gain Scout.'),
     ('Searchlight', 'Vehicles equipped with searchlights can illuminate targets during Night Fighting. After firing, they can choose to illuminate a target and themselves. The illumination lasts until the end of the next turn, negating Night Fighting for the affected units.'),
@@ -153,17 +175,22 @@ VALUES
     ('Shred', 'Models or weapons with the Shred special rule reroll failed To Wound rolls, whether in close combat or shooting.'),
     ('Shrouded', 'A unit that contains at least one model with this special rule counts its cover save as being 2 points better than normal. Note that this means a model with the Shrouded special rule always has a cover save of at least 5+, even if it’s in the open. Cover save bonuses from the Shrouded and Stealth special rules are cumulative (to a maximum of a 2+ cover save).'),
     ('Skilled Rider', 'A unit that contains at least one model with this special rule automatically passes Dangerous Terrain tests and receives +1 to its Jink cover saves (other cover saves are unaffected).'),
+    ('Skyburst', 'This shooting attack does not need line of sight. If the unit consists of at least six models with a grenade pack, the attack has the Large Blast special rule instead of the Blast special rule.'),
     ('Sky fire', 'A model with this special rule, or that is firing a weapon with this special rule, fires using its normal Weapon Skill when shooting at Flyers, Flyer Monsters and Skimmers, but it can only fire Snap Shots against other targets.'),
     ('Slow and Purposeful', 'Units with this rule sacrifice certain actions like Running or Overwatch but gain the ability to shoot certain weapons without penalty, even after moving, and can charge after firing them.'),
     ('Smash', 'Models with this rule excel in close combat, making all their attacks at AP 4 or better. They can also opt to perform a Smash Attack, doubling their Strength (up to 10), and can reroll armor penetration rolls for this attack.'),
     ('Smoke Launcher', 'Vehicles equipped with smoke launchers can activate them once per game instead of shooting or moving Flat Out. They cannot fire weapons afterward but gain a 5+ cover save in the next ennemy Shooting phase. The smoke disperses after the ennemys Shooting phase.'),
-    ('Sniper', 'Weapons with the Sniper special rule always wound on a 4+ and any To Wound roll of 6 is resolved at AP 4. On a roll of 6 To Hit, the shot is a Precision Shot, allowing allocation of Wounds to specific models. Additionally, Sniper attacks against vehicles are treated as Strength 4.'),
+    ('Snatched', 'When fighting in a challenge, this weapon has the Instant Death special rule.'),
+    ('Sniper', 'Weapons with the Sniper special rule always wound on a 4+ and any To Wound roll of 6 is resolved at AP -3. On a roll of 6 To Hit, the shot is a Precision Shot, allowing allocation of Wounds to specific models. Additionally, Sniper attacks against vehicles are treated as Strength 4.'),
     ('Soul Blaze', 'Units hit by attacks with the Soul Blaze special rule are set ablaze. At the end of each turn, roll a D6 for each affected unit. On a roll of 4 or more, the unit suffers D3 Strength 4 AP5 hits with Ignores Cover. If the roll is 3 or less, the flames extinguish. Each unit can only have one Soul Blaze counter at a time.'),
+    ('Soulfright', 'At the end of the Shooting phase, a unit that has suffered one or more hits from a weapon with this special rule in that phase must make a Leadership test. The unit suffers a single additional Mortal Wound for each point this test is failed by. Wounds cannot be allocated to models with the Fearless or And They Shall Know No Fear special rules (any excess Wounds are lost).'),
+    ('Soul - leech', 'Each time the bearer inflicts an unsaved Wound with this weapon it immediately regains one Wound lost previously in the battle.'),
     ('Specialist', 'A model fighting with this weapon does not receive +1 Attack for fighting with two weapons unless it is armed with two or more Melee weapons with the Specialist Weapon rule.'),
     ('Stealth', 'Units with the Stealth special rule improve their cover saves by 1 point. This bonus applies only when they are in specific types of terrain indicated by the rule (e.g., Stealth (Woods)). If a unit benefits from both the Shrouded and Stealth rules, their cover saves can improve by up to 2 points.'),
     ('Strafing Run', 'When shooting Assault, Heavy, Rapid Fire or Salvo weapons at Artillery, Beasts, Bikes, Cavalry, Infantry, Monsters and vehicles without the Flyer or Skimmer type, this vehicle has +1 Weapon Skill.'),
     ('Strike down', 'Any non-vehicle model that suffers one or more unsaved Wounds or passes one or more saving throws against an attack with the Strike down special rule moves as if it is in difficult terrain until the end of its next turn. It is a good idea to mark affected models with counters or coins so that you remember.'),
     ('Stubborn', 'When a unit that contains at least one model with this special rule takes Morale checks or Pinning tests, they ignore any negative Leadership modifiers. If a unit is both Fearless and Stubborn, it uses the rules for Fearless instead.'),
+    ('Sunder', 'Attacks with this special rule may re-roll failed Armour Penetration rolls.'),
     ('Supersonic', 'Supersonic vehicle that moves Flat Out must move at least 18" and can move up to 36".'),
     ('Sustained Hit', 'Each time an attack is made with such a weapon, an unmodified 6 To Hit inflicts a number of additional Hit corresponding to the number indicated on its profile.'),
     ('Swarms', 'Models with Swarms prioritize allocating wounds to models with the fewest wounds when multiple models could be the closest ennemy. Blast or Template weapon hits cause each unsaved wound to double, unless the wound has the Instant Death special rule. Swarm units ignore difficult terrain but must still test for Dangerous Terrain.'),
@@ -180,9 +207,10 @@ VALUES
     ('Vector Dancer', 'A model with this special rule can make an additional pivot on the spot of up to 90° at the end of its move. A model that uses this extra pivot cannot move Flat Out in the following Shooting phase.'),
     ('Vector Strike', 'While Swooping or Zooming, this model can perform a Vector Strike. At the end of the Movement phase, choose one ennemy unit the model moved over. The unit takes 1 hit (D3 hits if it is an ennemy Flyer in Zoom mode or Swooping Flyer Monster). Hits are resolved at the model’s unmodified Strength and AP2, with Random Allocation and Ignores Cover against vehicles. The model counts as having fired one weapon in its Shooting phase after a Vector Strike.'),
     ('Vortex', 'A weapon with the Vortex special rule creates a Vortex marker upon firing. Roll for scatter and apply damage from the markers center. The marker remains on the tabletop as impassable terrain. At the start of each player turn, it scatters 2D6". If a double is rolled, the marker is removed. Any unit under its new location is hit.'),
+    ('Warp Mutation', 'If the bearer slays an enemy Character or Monster, roll a D6: on the roll of a 2+ the victim is transformed into a Chaos Spawn under the control of the Daemon player. Place a new Chaos Spawn model (under your control), anywhere within 6" of the victim that is more than 1" from any unit (friend or foe) and impassable terrain. Once you have placed the Chaos Spawn remove the victim as a casualty.'),
+    ('Wrath of Angels', 'For every successful Wound roll of a 6 made with this weapon, that unit suffers an additional wound using the same weapon profile.'),
     ('Zealot', 'Units with the Zealot special rule automatically pass certain tests but cannot Go to Ground. They also re-roll failed To Hit rolls during the first round of each close combat.');
 ;
-
 -- Psychic Powers Domains table
 INSERT INTO psychic_powers_domains (Domains)
 VALUES
@@ -194,7 +222,6 @@ VALUES
     ('Pandaemoniac'), ('Slaanesh'), ('Soulstain'), ('Runes of Fortune'), ('Runes of Battle'), ('Runes of Fate'), ('Revenant'),
     ('Phantasmancy'), ('Power of the Waaagh!'), ('Beasthead'), ('Litanies of Battle'), ('Litanies ot the Devout'), ('Infernal Pacts')
 ;
-
 -- Psychic Powers table
 INSERT INTO psychic_powers (Domains_id, Powers_name, Powers_type, Powers_cost, Powers_desc)
 VALUES
@@ -545,7 +572,6 @@ VALUES
     ((SELECT Domains_id FROM psychic_powers_domains WHERE Domains = 'Infernal Pacts'), 'Glimpse of Eternity', 'Prayer', 7, 'If this pact is successful, until the start of your next Command phase you can re-roll one dice you have rolled. You cannot re-roll any rolls related to the mission.'),
     ((SELECT Domains_id FROM psychic_powers_domains WHERE Domains = 'Infernal Pacts'), 'Malefic Maelstrom', 'Prayer', 7, 'If this pact is successful, select one friendly unit within 24" of and visible to this model. Until the start of your next Command phase, each time a model in that unit makes a ranged attack, add 1 to the Strength characteristic of that attack.')
 ;
-
 -- Group Factions table
 INSERT INTO group_factions (group_faction_name)
 VALUES
@@ -555,7 +581,6 @@ VALUES
     ('NECRONS'),
     ('ORKS')
 ;
-
 -- Factions table
 INSERT INTO factions (Faction_name, Faction_keywords, group_faction_id, group_faction_name)
 VALUES
@@ -578,7 +603,6 @@ VALUES
     ('Necrons - Dynasty Mephrit', 'NECRONS, MEPHRIT', 4, 'NECRONS'),
     ('Orks - Clan Snakebites', 'ORKS, SNAKEBITES', 5, 'ORKS')
 ;
-
 -- Factions Aptitudes table
 INSERT INTO faction_aptitudes (Faction_id, Faction_aptitude_name, Faction_aptitude_desc)
 VALUES
