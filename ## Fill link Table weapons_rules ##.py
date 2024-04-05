@@ -23,17 +23,25 @@ try:
     # Fetch all rows
     rows = cur.fetchall()
 
-    # Insert rows into the weapon_rules table
+    # Insert rows into the weapons_rules table
     for row in rows:
         weapon_id, weapon_type, rule_id = row
         if rule_id:
             # If multiple rules found in weapon_type separated by " - ", duplicate rows
             parts = weapon_type.split(" - ")
             for part in parts:
+                # Check if the combination already exists in weapons_rules
                 cur.execute("""
-                    INSERT INTO weapons_rules (weapon_id, rule_id)
-                    VALUES (%s, %s)
+                    SELECT COUNT(*)
+                    FROM weapons_rules
+                    WHERE weapon_id = %s AND rule_id = %s
                 """, (weapon_id, rule_id))
+                count = cur.fetchone()[0]
+                if count == 0:
+                    cur.execute("""
+                        INSERT INTO weapons_rules (weapon_id, rule_id)
+                        VALUES (%s, %s)
+                    """, (weapon_id, rule_id))
         else:
             print(f"Rule not found for: {weapon_type}")
 
