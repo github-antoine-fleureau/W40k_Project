@@ -1,41 +1,91 @@
--- Active: 1710930161670@@127.0.0.1@5432@postgres
-
--- Fullfill Specific Tables --
-
--- Units table -- Unit_type could be: Infantry, Bikes - Jetbikes, Artillery, Jumps, Jet Packs, Beasts, Cavalry, Monsters, Vehicles, Flyers
+-- Unit Table
+-- Active: 1711638446495@@127.0.0.1@5432@postgres@public
+-- Units table -- Unit_type could be: Infantry, Bikes - Jetbikes, Artillery, Jumps, Jet Packs, Beasts, Cavalry, Monsters, Vehicles
 INSERT INTO units (Unit_name, Faction_id, Unit_type, Nb_fig, M, BS, WS, S, T, W, A, I, Ld, OC, Sv, Invul_sv,
-                   Keywords, Aptitude_name, Aptitude_desc, U_Pts)
+aptitudes,
+special_rules, U_Pts)
 VALUES
-    ('CHAPLAIN GRIMALDUS', 1, 'Infantry', 1, '6"', '2+', '2+', 4, 4, 5, 4, 4, '6+', 1, '3+', '4++',
-     'INFANTRY, CHARACTER, PRIEST, MASTER OF SANCTITY, CHAPLAIN, GRIMALDUS',
-     ARRAY['Litanies of the Devout','Unmatched Zeal'],
-     ARRAY['While Chaplain Grimaldus is leading a unit, each time a model in that unit makes a melee attack, you can re-roll the Hit roll.',
-        'Friendly Black Templars units within 6" of Chaplain Grimaldus have the Zealot special rule.'],
-     150)
+    ('CHAPLAIN GRIMALDUS - Mereck Grimaldus', 1, 'Infantry - Character', 1, '6"', '2+', '2+', 4, 4, 5, 4, 4, '6+', 1, '3+', '4++',
+     'Litanies of the Devout - Temple Relics - Unmatched Zeal',
+     'Feel No Pain (5+) - Independent Character - It Will Not Die - Adamantium Will - Zealot - Crusader - Frag & Krak Grenades - And They Shall Know No Fear - Litanies of Battle - Litanies of the Devout' 150)
 ;
 
--- Units Rules tables
-INSERT INTO units_rules (unit_id, Rule_id)
+-- Unit Aptitudes Table
+-- Active: 1711638446495@@127.0.0.1@5432@postgres@public
+-- Units Aptitudes table --
+INSERT INTO units_aptitudes (aptitude_name, aptitude_desc)
 VALUES
-    (1, 1),
-    (1, 2)
+    ('Litanies of the Devout', 'While Chaplain Grimaldus is leading a unit, each time a model in that unit makes a melee attack, you can re-roll the Hit roll.'),
+    ('Temple Relics', 'In your Command phase, if this unit contains one or more Cenobyte Servitor, the unit have the Relics of the Emperor Ascendant ability as follow (available only if the assocaite Cenobyte Servitor is alive):
+    - Banner of Fallen Crusaders: This unit is eligible to declare a charge in a turn in which it Advanced or Fell Back.
+    - Remnant of the Fallen Temple: Models in this unit have the Fearless special rule.
+    - Sceptre of Anointing: Improve the Armour Penetration characteristic of melee weapons equipped by models in this unit by 1.'),
+    ('Unmatched Zeal', 'Friendly Black Templars units within 6" of Chaplain Grimaldus have the Zealot special rule.'),
+    ('Skilful Parry', 'Once per phase, when a melee attack is allocated to this model and the saving throw is failed, you can subtract all the Damage characteristic of that attack (Damage change to 0).'),
+    ('Sigismund’s Heir', 'Each time this model makes a melee attack that targets a Character unit, add 1 to the Wound roll.'),
+    ('Slayer OF Champions', 'When fighting in a challenge, the Emperor’s Champion re-rolls failed To Hit rolls, and any To Wound rolls of 6 are resolved with the Instant Death special rule.'),
+    ('Honour OR Death', 'A model with this special rule must issue and accept a challenge whenever possible. If there is more than one friendly model in a combat with this rule, you may select which model issues or accepts the challenge.'),
+    ('Angel’s Wrath', 'While this model is leading a unit, each time that unit ends a Charge move, until the end of the turn, add 1 to the Strength characteristic of melee weapons equipped by models in that unit.'),
+    ('Rites OF Battle', 'Once per battle round, one unit from your army with this ability can be targeted by a Stratagem for 0CP, even if another unit from your army has already been targeted by that Stratagem this phase.'),
+    ('Tactical Precision', 'While this model is leading a unit, weapons equipped by models in that unit have the Lethal Hit special rule.'),
+    ('Target Priority', 'This model’s unit is eligible to shoot and declare a charge in a turn in which it Fell Back.'),
+    ('Litany OF Hate', 'While this model is leading a unit, each time a model in that unit makes a melee attack, add 1 to the Wound roll.'),
+    ('Spiritual Leader', 'Once per battle, at the start of any phase, you can select one friendly Adeptus Astartes unit that is Battle-shocked and within 12" of this model. That unit is no longer Battle-shocked.'),
+    ('Exhortation OF Rage', 'Each time this model’s unit is selected to fight, you can select one enemy unit within Engagement Range of this model’s unit and roll one D6: on a 4-5, that enemy unit suffers D3 mortal wounds; on a 6, that enemy unit suffers 3 mortal wounds.'),
+    ('Techmarine', 'While this model is within 3" of one or more friendly Adeptus Astartes Vehicle units, this model has the Lone Operative ability.'),
+    ('Blessing OF the Omnissiah', 'In your Command phase, you can select one friendly Adeptus Astartes Vehicle model within 3” of this model. That model regains up to D3 lost wounds and, until the start of your next Command phase, each time that Vehicle model makes an attack, add 1 to the Hit roll. Each model can only be selected for this ability once per turn.'),
+    ('Vengeance OF the Omnissiah', 'If a friendly Adeptus Astartes Vehicle model is destroyed within 12” of this model, until the end of the battle, this model’s Omnissian power axe has an Attacks characteristic of 7.'),
+    ('Bolster Defences', 'After deployment, but before Scout redeployments and Infiltrate deployments, nominate one piece of terrain in your deployment zone (this cannot be one you have purchased as part of your army). The terrain piece’s cover save is increased by 1 for the duration of the game (to a maximum of 3+). Note that a piece of terrain can only be bolstered once.'),
+    ('Mindlock', 'While a Techmarine model is leading this unit, improve the Ballistic Skill and Weapon Skill characteristics of ranged and melee weapons equipped by Astartes Servitor models in this unit by 1 and improve its Initiavite characteristic to 4. If it does not contain a Techmarine, an unengaged unit that contains at least one model with this special rule must roll a D6 at the start of its turn. On a 4+, this special rule has no effect this turn. On a 1, 2 or 3, the unit is mindlocked until the start of its following turn. A mindlocked unit may not voluntarily move, shoot or charge, but must still complete compulsory moves, such as Pile In and Fall Back moves.'),
+    ('Servitor Retinue', 'At the start of the Declare Battle Formations step, this unit can join one other unit from your army that is being led by a Techmarine. If it does, until the end of the battle, every model in this unit counts as being part of that Bodyguard unit, and that Bodyguard unit’s Starting Strength is increased accordingly.'),
+    ('Tactical Flexibility', 'This unit is eligible to shoot and declare a charge in a turn in which it Fell Back.'),
+    ('Scouts', 'Unit can make a Normal move of up to 6" before the first turn begins. If embarked in a Dedicated Transport, that Dedicated Transport cannot make this move instead. Must end this move more than 9" horizontally away from all enemy models.'),
+    ('Righteous Zeal', 'You can re-roll Advance and Charge rolls made for this unit, and for Attacks following a charge move, a successful unmodifed Hit roll of 5+ scores a Critical Hit.'),
+    ('Guerrilla Tactics', 'At the end of your opponent’s turn, if this unit is more than 6" away from all enemy models, you can remove this unit from the battlefield and place it into Strategic Reserves.'), 
+    ('Fury of the First', 'Each time a model in this unit makes an attack, you can ignore any or all modifiers to that attack’s Weapon Skill characteristic and/or to the Hit roll. In addition, each time a model in this unit makes an attack that targets the enemy unit you selected for the Oath of the Moment ability this turn, add 1 to the Hit roll.'),
+    ('Vow-sworn Bladesmen', 'At the start of the Fight phase, you can select one of the following effects to apply to melee weapons equipped by models in this unit until the end of the phase:
+    - Add 1 to the Attacks characteristic of those weapons.
+    - Add 1 to the Damage characteristic of those weapons.'),
+    ('Vanguard Assault', 'Each time this unit ends a Charge move, until the end of the turn, melee weapons equipped by models in this unit have the Lethal hit special rule'),
+    ('Special Issue Ammunition', 'In addition to the normal profile for their boltgun (including boltguns that are part of a combi-weapon), models with special issue ammunition can choose, in each of their Shooting phases, to instead use one of the profiles until the beginning of their next Shooting phase.'),
+    ('Bolter Drill', 'Once per battle, in your Shooting phase, after this unit has shot, if one or more enemy units were destroyed as a result of those attacks, this unit can shoot again.'),
+    ('Teleport Homer', 'At the start of the battle, you can set up one Teleport Homer token for this unit anywhere on the battlefield that is not in your opponent’s deployment zone. If you do, once per battle, you can target this unit with the Rapid Ingress Stratagem for 0CP, but when resolving that Stratagem, you must set this unit up within 3" horizontally of that token and not within 9" horizontally of any enemy models. That token is then removed.'),
+    ('Terminatus Assault', 'Each time this unit ends a Charge move, each enemy unit within Engagement Range of this unit must take a Battle-shock test.'),
+    ('Furious Assault', 'Each time this unit ends a Charge move, until the end of the turn, melee weapons equipped by models in this unitgain +1 Strength'),
+    ('Outrider Escort', 'Once per battle round, in your opponent’s Shooting phase, when a friendly Adeptus Astartes unit within 6" of this unit is selected as the target of an attack, this unit can use this ability. If it does, after that enemy unit has finished making its attacks, this unit can shoot as if it were your Shooting phase, but when resolving those attacks it can only target that enemy unit (and only if it is an eligible target).'),
+    ('Wisdom OF the Ancients (Aura)', 'While a friendly Adeptus Astartes Infantry unit is within 6" of this model, each time a model in that unit makes an attack, re-roll a Hit roll of 1.'),
+    ('Obliterate the Impur', 'In your Movement phase, if this model Remains Stationary, until the end of the turn, its Weapon has the devastating Wound Special rule.'),
+    ('Deadly Demise', 'When this model is destroyed, throw one D6 for each units within 6". On a 6, the unit suffers 1 mortal wound.'),
+    ('Lethal Demise', 'When this model is destroyed, throw one D6 for each units within 6". On a 6, the unit suffers D3 mortal wounds.'),
+    ('Fatal Demise', 'When this model is destroyed, throw one D6 for each units within 6". On a 6, the unit suffers D6 mortal wounds.'),
+    ('Explosive Deadly Demise', 'When this model is destroyed, throw one D6 for each units within 6". On a 4+, the unit suffers 1 mortal wound.'),
+    ('Explosive Lethal Demise', 'When this model is destroyed, throw one D6 for each units within 6". On a 4+, the unit suffers D3 mortal wounds.'),
+    ('Explosive Fatal Demise', 'When this model is destroyed, throw one D6 for each units within 6". On a 4+, the unit suffers D6 mortal wounds.'),
+    ('Even In Death, I Serve', 'The first time this model is destroyed, remove it from play without resolving its Deadly Demise ability. Then, at the end of the phase, roll one D6: on a 2+, set this model back-up on the battlefield as close as possible to where it was destroyed and not within Engagement Range of any enemy units, with D6 wounds remaining.'),
+    ('Venerable', 'If a Venerable Dreadnought suffers a penetrating hit, you can make your opponent re-roll the result on the Vehicle Damage table. You must accept the second result, even if it is worse than the first.'),
+    ('Target Sighted', 'Once per turn, at the start of your Shooting phase, select one enemy unit that is visible to this model. Until the end of the phase, each time a friendly Adeptus Astartes model makes an attack that targets that enemy unit, add 1 to the Hit roll, a successful unmodifed Hit roll of 5+ scores a Critical Hit, and that attacks has the Ignores Cover special rule.'),
+    ('Strafing Enfilade', 'Each time this model ends a Normal move, you can select one enemy unit (excluding Monster and Vehicle units) that it moved over during that move, then roll six D6: for each 4+, that enemy unit suffers 1 mortal wound.'),
+    ('Fire and Redeploy', 'In your Shooting phase, each time this model has shot, if it is not within Engagement Range of any enemy units, it can make a Normal move of up to D6". If it does, until the end of the turn, this model is not eligible to declare a charge.'),
+    ('Anti-grav Upwash', 'Whilst this unit includes three Land Speeders, it can move an additional 6" when moving Flat Out.'),
+    ('Destructor', 'Each time this model makes a ranged attack that targets an Infantry unit, improve the Armour Penetration characteristic of that attack by 1.'),
+    ('Annihilator', 'Each time a ranged attack made by this model is allocated to a Monster or Vehicle model,  improve the Armour Penetration characteristic of that attack by 1.'),
+    ('Self Repair', 'At the end of your Command phase, this model regains 1 lost wound. If a Rhino is Immobilised, then in subsequent turns, it may attempt to repair itself instead of shooting. To make the attempt, roll a D6 in the Shooting phase; on the roll of a 6+, the vehicle is no longer Immobilised.'),
+    ('Firing Deck X', 'Each time this Transport shoots, select one weapon from up to X models embarked within it; this Transport counts as being equipped with those weapons as well.'),
+    ('Transport Capacity X', 'This model has a transport capacity of X Infantry models. It cannot carry models with the Bulky, Very Bulky or Extremely Bulky special rules.'),
+    ('Huge Transport Capacity X', 'This model has a transport capacity of X Infantry models. Models with the Bulky special rule counts as 2, Very Bulky counts as 3 and Extremely Bulky counts as 4 models.'),
+    ('Fire Support', 'In your Shooting phase, after this model has shot, select one enemy unit it scored one or more hits against this phase. Until the end of the phase, each time a friendly model that disembarked from this Transport this turn makes an attack that targets that enemy unit, you can re-roll the Wound roll.'),
+    ('Drop Pod Assault', 'Drop Pods and units embarked upon them must be held in Deep Strike Reserve, but neither it nor any units embarked within it are counted towards any limits placed on the maximum number of Reserves units you can start the battle with. At the beginning of your first turn, half of your Drop Pods (rounding up) automatically arrive from Reserve. The arrival of remaining Drop Pods is rolled for normally. Once a Drop Pod lands, all passengers must disembark; they must be set up more than 9" away from all enemy models; and no models can embark for the rest of the game.'),
+    ('Inertial Guidance System', 'If a Drop Pod scatters on top of impassable terrain or another model (friend or foe), reduce the scatter distance by the minimum required in order to avoid the obstacle. If the Drop Pod scatters off the edge of the board, it suffers a Deep Strike Mishap.'),
+    ('Locator Beacon', 'Friendly units do not scatter when they Deep Strike, so long as the first model is placed within 6" of a model with a locator beacon. The locator beacon must have been on the battlefield at the start of the turn in order for it to be used.'),
+    ('Strafing Run', 'Each time this model makes a ranged attack that targets a unit that cannot Fly, add 1 to the Degats characteristic.'),
+    ('Vectored Afterburners', 'When Zooming, a Stormtalon Gunship can move an additional 6" if it moves Flat Out. When Hovering, a Stormtalon Gunship receives +1 to its Jink cover saves (other cover saves are unaffected).'),
+    ('Ceramite Plating', 'Melta weapons do not roll an extra D6 armour penetration when shooting a vehicle equipped with ceramite plating at half range or less.'),
+    ('Armoured Resilience', 'Each time an attack is allocated to this model, subtract 1 from the Damage characteristic of that attack.'),
+    ('Skies of Fury', 'If the Stormraven has moved in Hover Mode more than 6", passengers can still disembark, but they must do so as follows: Nominate any point over which the Stormraven moved that turn and deploy the squad as if it were Deep Striking onto that point. If the unit scatters, every disembarking model must immediately take a Dangerous Terrain test. If any of the models cannot be deployed, the entire unit is destroyed. Models that disembark using the Skies of Fury special rule cannot charge on the turn they do so.'),
 ;
 
--- Units Psy tables
-INSERT INTO units_psy (unit_id, domains_id)
-VALUES
-    (1, 1),
-    (1, 2)
-;
-
--- Units Rules tables
-INSERT INTO units_weapons (unit_id, weapon_id)
-VALUES
-    (1, 1),
-    (1, 2)
-;
-
--- Weapons table -- Weapon type could be: Melee, Assault - Heavy, Ordnance, Pistol, Psychic, Rapid Fire, Salvo, Bombs or Primary
+-- Weapons table --
+-- Active: 1711638446495@@127.0.0.1@5432@postgres@public
 INSERT INTO weapons (group_faction_id, Weapon_name, Weapon_type, Range, A, S, AP, D, W_Pts)
 VALUES
     (1, 'Bolt pistol', 'Pistol', '12"', '1', '4', '0', '1', 0),
@@ -52,10 +102,10 @@ VALUES
     (1, 'Marksman bolt carbine', 'Heavy - Lethal Hits', '24"', '2', '4', '0', '2', 5),
     (1, 'Stalker pattern boltgun', 'Heavy - Sniper', '30"', '2', '4', '-1', '1', 5),
     (1, 'Bolt sniper rifle', 'Heavy - Sniper', '36"', '1', '5', '-2', '3', 10),
-    (1, 'Ammunition Dragonfire Bolt', 'Ignores Cover', '=', '=', '=', 'Minus 1', '=', 0),
-    (1, 'Ammunition Hellfire Round', 'Poisoned (2+)', '=', '=', '-3', 'Minus 1', '=', 0),
-    (1, 'Ammunition Kraken Bolt', 'Concussive', '+25%', '=', '=', 'Minus 2', '=', 0),
-    (1, 'Ammunition Vengeance Round', 'Gets Hot', '-25%', '=', '=', 'Minus 3', '=', 0),
+    (1, 'Ammunition Dragonfire Bolt', 'Ignores Cover', '=', '=', '=', '=', '=', 0),
+    (1, 'Ammunition Hellfire Round', 'Poisoned (2+)', '=', '=', '-3', '-1', '=', 0),
+    (1, 'Ammunition Kraken Bolt', 'Concussive', '+25%', '=', '=', '-1', '=', 0),
+    (1, 'Ammunition Vengeance Round', 'Gets Hot', '-25%', '=', '=', '-3', '=', 0),
     (1, 'Twin boltgun', 'Rapid Fire 1 - Twin-linked', '24"', '2', '4', '0', '1', 5),
     (1, 'Hurricane boltgun', 'Rapid Fire 6', '24"', '6', '4', '0', '1', 15),
     (1, 'Twin hurricane boltgun', 'Rapid Fire 6 - Twin-linked', '24"', '6', '4', '0', '1', 20),
@@ -618,12 +668,4 @@ VALUES
     (3, 'The Executioner’s (Single-blade)', 'Melee - Master-crafted - Devastating Wounds - Two Handed', 'Melee', '+1', '+2', '-2', '3', 0),
     (3, 'The Executioner’s (Dual-blade)', 'Melee - Master-crafted - Twin-linked', 'Melee', '+3', '+1', '-2', '2', 0),
     (3, 'Lelith’s blades', 'Melee - Master-crafted - Sustained Hits 2 - Anti-Infantry', 'Melee', 'User', 'User', '-2', '1', 0)
-;
-
--- Weapon Rules tables
-
-INSERT INTO weapons_rules (weapon_id, rule_id)
-VALUES
-    (1, 1),
-    (1, 2)
 ;
