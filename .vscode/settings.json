@@ -1,0 +1,16 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "username": "postgres",
+            "name": "localhost",
+            "database": "postgres"
+        }
+    ],
+    "editor.cursorSmoothCaretAnimation": "explicit",
+    "editor.formatOnPaste": true,
+    "editor.formatOnType": true
+}
