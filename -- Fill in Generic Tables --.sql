@@ -128,7 +128,6 @@ VALUES
     Once all out of coherency models have been removed (if any), the Morale phase ends. The player’s turn then ends and, unless the battle ends, the next player’s turn begins.')
 ;
 
-
 -- Special rules Table
 -- Active: 1711638446495@@127.0.0.1@5432@postgres@public
 INSERT INTO special_rules (Rule_name, Rule_desc)
@@ -215,6 +214,7 @@ VALUES
     6	Deathblow: The model suffers D6+6 Mortal Wounds in addition to any Damage characteristic.'),
     ('Devastating Wound', 'Each time an attack is made with such a weapon, unmodified 6+ To Wounds inflict Mortal Wounds instead of classical wounds.'),
     ('Distort Scythe', 'When rolling on the Destroyer Weapon Attack table for a weapon that has this special rule, subtract 1 from the result of the D6 roll (to a minimum of 1). Furthermore, a weapon with this special rule is assumed to have a Sof 15 for the necessaries rule.'),
+    ('Dragon’s Breath', 'When attacking using the Wall of Death special rule (see the Template rules), a weapon with this special rule inflicts D6 Hits instead of D3.'),
     ('Earthshatter', 'While attacking with this weapon, you can choose to forfeit his usual close combat attacks in order to place a Blast (3") Template anywhere in base-to-base contact that does not cover any friendly models. All models under the Template suffer a single automatic S8 AP -3 Damages 3 Hit with the Strikedown special rule.'),
     ('Entropic Strike', 'If a model has this special rule, or is attacking with a Melee weapon that has this special rule, a To Wound roll of a 6 wounds automatically, regardless of the target’s Toughness.'),
     ('Eternal Warrior', 'If a model with this special rule suffers an unsaved Wound from an attack that inflicts Instant Death, it only reduces its Wounds by 1, instead of automatically reducing its Wounds to 0.'),
@@ -316,7 +316,7 @@ VALUES
     ('Interceptor', 'At the end of the enemy Movement phase, a weapon with the Interceptor special rule can be fired at any one unit that has arrived from Reserve within its range and line of sight. If this rule is used, the weapon cannot be fired in the next turn, but the firing model can shoot a different weapon if it has one.'),
     ('It Will Not Die', 'At the end of each of your turns, roll a D6 for each of your models with this special rule that has less than its starting number of Wounds or Hull Points, but has not been removed as a casualty or destroyed. On a roll of 5+, that model regains a Wound, or Hull Point, lost earlier in the game.'),
     ('Jink', 'When a unit with any models with the Jink special rule is selected as a target for a shooting attack, you may declare that it will Jink. The decision must be made before any To Hit rolls have been made. If the unit Jinks, all models in the unit with this special rule gain a 4+ cover save until the start of their next Movement phase, but they can only fire Snap Shots until the end of their next turn.'),
-    ('Lance', 'Weapons with the Lance special rule count vehicle Armor Values that are higher than 15 as 15. Each time an attack is made with such a weapon, if the bearer made a Charge move this turn, add 1 to that attack’s Wound roll. Lances have +2 in Son a turn in which a model charges.'),
+    ('Lance', 'Weapons with the Lance special rule count vehicle Armor Values that are higher than 13 as 13. Each time an attack is made with such a weapon, if the bearer made a Charge move this turn, add 1 to that attack’s Wound roll. Lances have +2 in S on a turn in which a model charges.'),
     ('Lethal hit', 'Each time an attack is made with such a weapon, an unmodified 6 To Hit automatically wounds the target.'),
     ('Lethal Precision', 'Attacks with this special rule gain the Precision strikes on 4+ and Devastating Wounds special rule.'),
     ('Line of Effect', 'While firing with this weapon, draw a line 1mm wide adn 18" long, from this unit in any direction, to determine the area of effect. All units crossed by the line suffer a number of hits equal to the number of models in the unit the line crosses'),
@@ -503,11 +503,6 @@ VALUES
     ('Beast', 'Beasts are not slowed by difficult terrain (even when charging) and automatically pass Dangerous Terrain tests. Beasts make Fall Back moves just like Infantry, except that they move 3D6". Beasts have the Fleet special rule.'),
     ('Cavalry', 'Cavalries are not slowed down by difficult terrain (even when charging). However, Cavalry models treat all difficult terrain as dangerous terrain instead. Cavalries are not slowed down by difficult terrain (even when charging). However, Cavalry models treat all difficult terrain as dangerous terrain instead. Cavalries have the Fleet and Hammer of Wrath special rules.'),
     ('Monster', 'Monsters may never Go to Ground, voluntarily or otherwise. Monsters have the Fear, Hammer of Wrath, Move Through Cover, Relentless and Smash special rules.'),
-    ('Flying Monster', 'Flying Monsters start in Gliding mode when deployed. Upon entering the game from Reserve, they must declare Swooping or Gliding mode. When summoned or conjured, their mode is also declared upon entry. They possess the Jink and Vector Strike special rules in addition to those of Monsters. They can move in either Swooping or Gliding mode.
-    Changing Flight Mode: At the start of its move, a Flying Monster must declare whether it is Swooping or Gliding until the start of its next turn. If a Flying Monster changes flight modes during its turn, it cannot declare a charge during the same turn. A Gliding Flying Monster cannot change flight mode whilst Falling Back.
-    Gliding Mode: If a Flying Monster is Gliding, it moves, Runs and charges exactly like a Jump Monster.
-    Swooping Mode: If a Flying Monster is Swooping, it moves exactly like a Jump Monster, with the following exceptions:
-    When Swooping, a Flying Monster moves 12" to 24" in a straight line, pivoting up to 90° before moving. It ignores terrain and cannot be engaged in combat. It can fire up to two weapons normally and can choose whether to use Skyfire each phase. If it suffers wounds, it may crash down and become Grounded, able to be charged and losing its Jink save. It can revert to Swoop mode on its next turn. Vehicles cannot Tank Shock it.'),
     ('Vehicle', 'Measuring Distances: As vehicle models do not usually have bases, the normal rule of measuring distances to or from a base cannot be used. Instead, for distances involving a vehicle, measure to and from their hull, ignore gun barrels, dozer blades, antennas, banners and other decorative elements. There is, however, the notable exception of a vehicle’s weaponry. When firing a vehicle’s weapons, ranges are measured from the muzzle of the firing weapon, whilst line of sight is determined from the weapon’s mounting point and along its barrel.
     Movement Phase: Vehicles pivot around their center-point to turn, without moving. This maneuver does not count as movement, making the vehicle Stationary if it only pivots. Immobilized vehicles cannot pivot. They cannot move over friendly models, like other units.
     - Stationary: A vehicle that remains Stationary will be able to bring its full firepower to bear on the enemy.
@@ -556,7 +551,6 @@ VALUES
     Vehicles, Leadership and Morale: Vehicles are considered steadfast, never taking Morale checks or Leadership tests. Any occasional setbacks are represented by Crew Shaken and Crew Stunned results on the Vehicle Damage table.')
 ;
 
-
 -- Psychic Tables
 -- Active: 1711638446495@@127.0.0.1@5432@postgres@public
 -- Psychic Powers Domains table
@@ -570,7 +564,6 @@ VALUES
     ('Pandaemoniac'), ('Slaanesh'), ('Soulstain'), ('Runes of Fortune'), ('Runes of Battle'), ('Runes of Fate'), ('Revenant'),
     ('Phantasmancy'), ('Power of the Waaagh!'), ('Beasthead'), ('Litanies of Battle'), ('Litanies of the Devout'), ('Infernal Pacts')
 ;
-
 -- Psychic Powers table
 INSERT INTO psychic_powers (Domains_id, Powers_name, Powers_type, Powers_cost, Powers_desc)
 VALUES
@@ -922,7 +915,6 @@ VALUES
     ((SELECT Domains_id FROM psychic_powers_domains WHERE Domains = 'Infernal Pacts'), 'Malefic Maelstrom', 'Prayer', 7, 'If this pact is successful, select one friendly unit within 24" of and visible to this model. Until the start of your next Command phase, each time a model in that unit makes a ranged attack, add 1 to the Scharacteristic of that attack.')
 ;
 
-
 -- Factions tables
 -- Active: 1711638446495@@127.0.0.1@5432@postgres@public
 -- Group Factions table
@@ -934,7 +926,6 @@ VALUES
     ('NECRONS'),
     ('ORKS')
 ;
-
 -- Factions table
 INSERT INTO factions (Faction_name, Faction_keywords, group_faction_id, group_faction_name)
 VALUES
@@ -957,7 +948,6 @@ VALUES
     ('Necrons - Dynasty Mephrit', 'NECRONS, MEPHRIT', 4, 'NECRONS'),
     ('Orks - Clan Snakebites', 'ORKS, SNAKEBITES', 5, 'ORKS')
 ;
-
 -- Factions Aptitudes table
 INSERT INTO faction_aptitudes (Faction_id, Faction_aptitude_name, Faction_aptitude_desc)
 VALUES
