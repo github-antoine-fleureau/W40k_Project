@@ -17,7 +17,7 @@ try:
     cur.execute("""
         SELECT u.Unit_id, u.Unit_type, t.Types_id
         FROM units u
-        LEFT JOIN types t ON u.Unit_type = t.Types_name
+        LEFT JOIN types t ON u.Unit_type LIKE '%' || t.Types_name || '%'
     """)
 
     # Fetch all rows
