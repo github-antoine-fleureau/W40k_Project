@@ -2,7 +2,8 @@
 -- Active: 1711638446495@@127.0.0.1@5432@postgres@public
 -- Core Rules table
 CREATE TABLE core_rules (
-    Phase_id SERIAL PRIMARY KEY, Phase_rule VARCHAR(100) NOT NULL, Phase_desc TEXT NOT NULL);
+    Phase_id SERIAL PRIMARY KEY, Phase_rule VARCHAR(100) NOT NULL, Phase_desc TEXT NOT NULL
+);
 -- Special Rules table
 CREATE TABLE special_rules (
     Rule_id SERIAL PRIMARY KEY, Rule_name VARCHAR(100) NOT NULL, Rule_desc TEXT NOT NULL);
