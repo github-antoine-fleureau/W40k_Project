@@ -222,18 +222,23 @@ try:
 
     # Apply the convert_range function to the 'RANGE' column
     weapons_data['RANGE'] = weapons_data['RANGE'].apply(convert_range)
+    # print(Units_data['RANGE'].unique())
 
     # Apply the convert_a function to the 'A' column
     weapons_data['A'] = weapons_data['A'].apply(convert_a)
+    # print(Units_data['A'].unique())
 
     # Apply the convert_s function to the 'S' column
     weapons_data['S'] = weapons_data['S'].apply(convert_s)
+    # print(Units_data['S'].unique())
 
     # Apply the convert_ap function to the 'AP' column
     weapons_data['AP'] = weapons_data['AP'].apply(convert_ap)
+    # print(Units_data['AP'].unique())
 
     # Apply the convert_d function to the 'D' column
     weapons_data['D'] = weapons_data['D'].apply(convert_d)
+    # print(Units_data['D'].unique())
 
     # # Save the DataFrame to an Excel file to check the correct data transformation
     # weapons_data[['RANGE', 'A', 'S', 'AP', 'D']].to_excel('C:/Users/antoi/OneDrive/Documents/Individuels/Antoine/Professionnel/Projet_W40k/weapons_predictions.xlsx', index=False)
