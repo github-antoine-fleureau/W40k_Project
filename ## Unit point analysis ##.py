@@ -436,8 +436,8 @@ def main():
         Units_data['Predicted_U_Pts_by_fig'] = rf_model.predict(X)
         Units_data['Predicted_U_Pts_by_fig'] = np.maximum(Units_data['Predicted_U_Pts_by_fig'], 0).round(-1).astype(int)
 
-        # Adjust points for Vehicles
-        Units_data['Predicted_U_Pts_by_fig'] = Units_data.apply(lambda row: row['Predicted_U_Pts_by_fig'] * 1.5 if row['Unit_type'] == 'Vehicle' else row['Predicted_U_Pts_by_fig'], axis=1)
+        # # Adjust points for Vehicles
+        # Units_data['Predicted_U_Pts_by_fig'] = Units_data.apply(lambda row: row['Predicted_U_Pts_by_fig'] * 1.5 if row['Unit_type'] == 'Vehicle' else row['Predicted_U_Pts_by_fig'], axis=1)
 
         # Create 'Predicted_U_Pts' column
         Units_data['Predicted_U_Pts'] = Units_data['Predicted_U_Pts_by_fig'] * Units_data['Nb_fig']
