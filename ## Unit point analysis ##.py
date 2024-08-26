@@ -355,7 +355,7 @@ def retrieve_and_preprocess_data():
         )
 
         SELECT 
-            u.Unit_id, u.Unit_name, u.Unit_type, u.Nb_fig, u."M | CS | H", u.BS, u.WS, u.S, u."F | S | R", u.W, u.A, u.I, u.Ld, u.OC, u.Sv, u.Invul_sv, u.U_Pts,
+            u.Unit_id, u.Unit_name, u.Unit_type, u.Nb_fig, u."Movement | Cruising Speed | Hover", u.BS, u.WS, u.S, u."Front | Side | Rear", u.W, u.A, u.I, u.Ld, u.OC, u.Sv, u.Invul_sv, u.U_Pts,
             COALESCE(rule_count, 0) AS rule_count, COALESCE(aptitude_count, 0) AS aptitude_count, POWER(COALESCE(psy_count, 0), 3) AS psy_count
         FROM 
             units u
@@ -369,13 +369,13 @@ def retrieve_and_preprocess_data():
         rows = cur.fetchall()
 
         # Preprocess data
-        Units_data = pd.DataFrame(rows, columns=['Unit_id', 'Unit_name', 'Unit_type', 'Nb_fig', '"M | CS | H"', 'BS', 'WS', 'S', '"F | S | R"', 'W', 'A', 'I', 'Ld', 'OC', 'Sv', 'Invul_sv', 'U_Pts',
+        Units_data = pd.DataFrame(rows, columns=['Unit_id', 'Unit_name', 'Unit_type', 'Nb_fig', '"Movement | Cruising Speed | Hover"', 'BS', 'WS', 'S', '"Front | Side | Rear"', 'W', 'A', 'I', 'Ld', 'OC', 'Sv', 'Invul_sv', 'U_Pts',
                 'rule_count', 'aptitude_count', 'psy_count'])
-        Units_data['"M | CS | H"'] = Units_data['"M | CS | H"'].apply(convert_movement)
+        Units_data['"Movement | Cruising Speed | Hover"'] = Units_data['"Movement | Cruising Speed | Hover"'].apply(convert_movement)
         Units_data['BS'] = Units_data['BS'].apply(convert_bws)
         Units_data['WS'] = Units_data['WS'].apply(convert_bws)
         Units_data['A'] = Units_data['A'].apply(convert_a)
-        Units_data['"F | S | R"'] = Units_data['"F | S | R"'].apply(convert_e)
+        Units_data['"Front | Side | Rear"'] = Units_data['"Front | Side | Rear"'].apply(convert_e)
         Units_data['W'] = Units_data['W'].apply(convert_w)
         Units_data['Ld'] = Units_data['Ld'].apply(convert_ld)
         Units_data['OC'] = Units_data['OC'].apply(convert_oc)
@@ -387,11 +387,11 @@ def retrieve_and_preprocess_data():
             # Create a new column 'U_Pts_by_fig' by dividing 'U_Pts' by 'Nb_fig' and rounding to integer
             Units_data['U_Pts_by_fig'] = Units_data.apply(lambda row: round(row['U_Pts'] / row['Nb_fig']), axis=1)
         
-        # print(Units_data[['"M | CS | H"', 'BS', 'WS', 'A', '"F | S | R"', 'W', 'Ld', 'OC', 'Sv', 'Invul_sv', 'rule_count', 'aptitude_count', 'psy_count']].unique())
+        # print(Units_data[['"Movement | Cruising Speed | Hover"', 'BS', 'WS', 'A', '"Front | Side | Rear"', 'W', 'Ld', 'OC', 'Sv', 'Invul_sv', 'rule_count', 'aptitude_count', 'psy_count']].unique())
         # print(Units_data.dtypes)
 
         ## Save the DataFrame to an Excel file
-        # Units_data[['Unit_name', 'Nb_fig', '"M | CS | H"', 'BS', 'WS', 'A', '"F | S | R"', 'W', 'Ld', 'OC', 'Sv', 'Invul_sv', 'rule_count', 'aptitude_count', 'psy_count', 'U_Pts']].to_excel('C:/Users/antoi/OneDrive/Documents/Individuels/Antoine/Professionnel/Projet_W40k/unit_predictions.xlsx', index=False)
+        # Units_data[['Unit_name', 'Nb_fig', '"Movement | Cruising Speed | Hover"', 'BS', 'WS', 'A', '"Front | Side | Rear"', 'W', 'Ld', 'OC', 'Sv', 'Invul_sv', 'rule_count', 'aptitude_count', 'psy_count', 'U_Pts']].to_excel('C:/Users/antoi/OneDrive/Documents/Individuels/Antoine/Professionnel/Projet_W40k/unit_predictions.xlsx', index=False)
 
         return Units_data
 
