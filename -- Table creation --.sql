@@ -38,7 +38,7 @@ CREATE TABLE units (
     Movement VARCHAR(10) NOT NULL, Cruising Speed INT NULL, Hover INT NULL,
     BS (VARCHAR25) NOT NULL, WS VARCHAR(5) NOT NULL, S INT NOT NULL, T INT NULL,
     Front INT NULL, Side INT NULL, Rear INT NULL, HP INT NOT NULL, A INT NOT NULL,
-    I INT NOT NULL, Ld VARCHAR(5) NOT NULL, OC INT NOT NULL, Sv VARCHAR(5), Invul_sv VARCHAR(10) NULL, Weapons TEXT, Aptitudes TEXT NOT NULL, domains TEXT,
+    I INT NOT NULL, Ld VARCHAR(5) NOT NULL, OC INT NOT NULL, Sv VARCHAR(5), Invul_sv VARCHAR(10) NULL, Weapons TEXT, Aptitudes TEXT NOT NULL, domains TEXT NULL,
     Special_rules TEXT NOT NULL, U_Pts INT);
 -- Units Aptitudes table
 CREATE TABLE units_aptitudes (
