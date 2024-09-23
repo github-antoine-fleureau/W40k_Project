@@ -36,7 +36,7 @@ CREATE TABLE units (
     Unit_id SERIAL PRIMARY KEY, Unit_name VARCHAR(200) NOT NULL, group_faction_id INT NOT NULL REFERENCES group_factions (group_faction_id),
     Faction_id INT NOT NULL REFERENCES factions (Faction_id), Unit_type VARCHAR(50), Nb_fig INT NOT NULL,
     Movement VARCHAR(10) NOT NULL, Cruising Speed INT NULL, Hover INT NULL,
-    BS (VARCHAR25) NOT NULL, WS VARCHAR(5) NOT NULL, S INT NOT NULL, T INT NULL,
+    BS (VARCHAR25) NULL, WS VARCHAR(5) NULL, S INT NOT NULL, T INT NULL,
     Front INT NULL, Side INT NULL, Rear INT NULL, HP INT NOT NULL, A INT NOT NULL,
     I INT NOT NULL, Ld VARCHAR(5) NOT NULL, OC INT NOT NULL, Sv VARCHAR(5), Invul_sv VARCHAR(10) NULL, Weapons TEXT, Aptitudes TEXT NOT NULL, domains TEXT NULL,
     Special_rules TEXT NOT NULL, U_Pts INT);
