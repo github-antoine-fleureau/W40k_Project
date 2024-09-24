@@ -2403,7 +2403,6 @@ VALUES('WARBOSS - Squigbait Skragjaw', 5, 18, 'Infantry', 1, '6"', NULL, NULL, '
     'Chain-snares - Grisly Trophies - Soulfright - Explosive Lethal Demise',
     'Deep Strike - Night Vision - Fast - Skimmer - Oppen-topped',
     NULL, 30),
--- Movement, Cruising Speed, Hover, BS, WS, S, T, Front, Side, Rear, HP, A, I, Ld, OC, Sv, Invul_sv,
     ('AVATAR OF KHAINE - Wrathfire Colossus - Full HP', 3, 15, 'Monster', 1, '10"', NULL, NULL, '2+', '2+', 7, 12, NULL, NULL, NULL, 14, 6, 10, '6+', 5, '2+', '4++/4++',
     'The Wailing Doom',
     'Molten Form - Khaine Awakened - The Bloody_Handed (Aura) - Lethal Demise',
