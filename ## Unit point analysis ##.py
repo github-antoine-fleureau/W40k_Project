@@ -32,22 +32,21 @@ def convert_movement(value):
     
     # Define the mapping of values to their corresponding numeric values
     mapping = {
-        '20-30" | 30-45" | 18",13-20" | 19-30" | 12",7-10" | 10-15" | 6"': 0.45,
-        '14" | 21",9" | 13",5" | 7"': 0.21,
-        '12" | 18",8" | 12",4" | 6"': 0.12,
-        '10" | 15",7" | 10",3" | 4"': 0.15,
-        '9" | 13",6" | 9",3" | 4"': 0.13,
-        '8" | 12",5" | 7",3" | 4"': 0.12,
-        '7" | 10",5" | 7",2" | 3"': 0.1,
-        '6" | 9",4" | 6",2" | 3"': 0.06,
-        '5" | 8",3" | 5",2" | 3"': 0.08,
-        '6", 5", 12"': 0.12,
-        '6", 5", 4"': 0.06,
+        '20-30"': 0.30,
+        '30-45"': 0.45,
+        '13-20"': 0.20,
+        '19-30"': 0.30,
+        '7-10"': 0.10,
+        '10-15"': 0.15,
+        '21"': 0.21,
+        '18"': 0.18,
         '16"': 0.16,
+        '15"': 0.15,
         '14"': 0.14,
+        '13"': 0.13,
         '12"': 0.12,
         '11"': 0.11,
-        '10"': 0.1,
+        '10"': 0.10,
         '9"': 0.09,
         '8"': 0.08,
         '7"': 0.07,
@@ -69,150 +68,16 @@ def convert_bws(value):
     
     # Define the mapping of a values to their corresponding converted values
     mapping = {
-        '': 0.01, # Assigning a default value of 0.01 for empty strings
-        '2+': 1,
-        '3+': 0.7,
-        '4+': 0.5,
-        '5+' : 0.2,
-        '3+,4+': 0.6,
-        '2+,3+,4+': 0.8,
-        '3+,4+,5+': 0.5,
-        '4+,5+,6+': 0.3
+        '2+': 2,
+        '3+': 1.5,
+        '4+': 1.0,
+        '5+': 0.5,
+        '6+': 0.1
     }
 
 
     # Return the converted value based on the s_mapping
     return mapping.get(value, value)  # Return original value if not found in mapping
-def convert_a(value):
-    """
-    Function to convert a values.
-    """
-    if isinstance(value, list):
-        # Handle lists by joining their elements into a single string
-        value = ','.join(map(str, value))
-
-    # Define the mapping of a values to their corresponding converted values
-    mapping = {
-        '0': 0.01,
-        '1': 0.1,
-        '2': 0.2,
-        '3': 0.3,
-        '4': 0.4,
-        '5': 0.5,
-        '6': 0.6,
-        '7': 0.7,
-        '8': 0.8,
-        '3,4': 0.3,
-        '5,4': 0.5,
-        '3,2,1': 0.3,
-        '4,3,2': 0.4,
-        '5,4,3': 0.5,
-        '6,5,4': 0.6,
-        '7,6,5': 0.7,
-    }
-
-
-    # Return the converted value based on the s_mapping
-    return mapping.get(value, value)  # Return original value if not found in mapping
-def convert_e(value):
-    """
-    Function to convert e values.
-    """
-    if isinstance(value, list):
-        # Handle lists by joining their elements into a single string
-        value = ','.join(value)
-    
-    # Define the mapping of a values to their corresponding converted values
-    mapping = {
-        '3': lambda: logic_1_25_10_100("3"),
-        '4': lambda: logic_1_25_10_100("4"),
-        '5': lambda: logic_1_25_10_100("5"),
-        '6': lambda: logic_1_25_10_100("6"),
-        '7': lambda: logic_1_25_10_100("7"),
-        '8': lambda: logic_1_25_10_100("8"),
-        '9': lambda: logic_1_25_10_100("9"),
-        '10': lambda: logic_1_25_10_100("10"),
-        '11': lambda: logic_1_25_10_100("11"),
-        '12': lambda: logic_1_25_10_100("12"),
-        '4,5': lambda: logic_1_25_10_100("5"),
-        '3,2,1': lambda: logic_1_25_10_100("3"),
-        '10,9,8': lambda: logic_1_25_10_100("10"),
-        '11,10,9': lambda: logic_1_25_10_100("11"),
-        '12,11,10': lambda: logic_1_25_10_100("12"),
-        '9 | 9 | 9,8 | 8 | 8,7 | 7 | 7': lambda: logic_1_25_10_100("9"),
-        '10 | 10 | 10,9 | 9 | 9,8 | 8 | 8': lambda: logic_1_25_10_100("10"),
-        '11 | 11 | 9,10 | 10 | 8,9 | 9 | 7': lambda: logic_1_25_10_100("10"),
-        '11 | 11 | 10,10 | 10 | 8,9 | 9 | 7': lambda: logic_1_25_10_100("11"),
-        '11 | 11 | 11,10 | 10 | 10,9 | 9 | 9': lambda: logic_1_25_10_100("11"),
-        '12 | 12 | 10,11 | 11 | 9,10 | 10 | 8': lambda: logic_1_25_10_100("11"),
-        '12 | 12 | 11,11 | 11 | 10,10 | 10 | 9': lambda: logic_1_25_10_100("12"),
-        '12 | 12 | 12,11 | 11 | 11,10 | 10 | 10': lambda: logic_1_25_10_100("12"),
-        '13 | 12 | 12,12 | 11 | 11,11 | 10 | 10': lambda: logic_1_25_10_100("13"),
-        '13 | 13 | 11,12 | 12 | 10,11 | 11 | 9': lambda: logic_1_25_10_100("12"),
-        '13 | 13 | 12,12 | 12 | 11,11 | 11 | 10': lambda: logic_1_25_10_100("13"),
-        '13 | 13 | 13,12 | 12 | 12,11 | 11 | 11': lambda: logic_1_25_10_100("13"),
-        '14 | 14 | 12,13 | 13 | 11,12 | 12 | 10': lambda: logic_1_25_10_100("13"),
-        '14 | 14 | 13,13 | 13 | 12,12 | 12 | 11': lambda: logic_1_25_10_100("14"),
-        '15 | 13 | 13,14 | 12 | 12,13 | 11 | 11': lambda: logic_1_25_10_100("14"),
-        '15 | 14 | 13,14 | 13 | 12,13 | 12 | 11': lambda: logic_1_25_10_100("14"),
-        '15 | 15 | 13,14 | 14 | 12,13 | 13 | 11': lambda: logic_1_25_10_100("14"),
-        '15 | 15 | 15,14 | 14 | 14,13 | 13 | 13': lambda: logic_1_25_10_100("15"),
-        '16 | 15 | 13,15 | 14 | 12,14 | 13 | 11': lambda: logic_1_25_10_100("14"),
-        '16 | 15 | 14,15 | 14 | 13,14 | 13 | 12': lambda: logic_1_25_10_100("15"),
-        '16 | 15 | 15,15 | 14 | 14,14 | 13 | 13': lambda: logic_1_25_10_100("15"),
-        '17 | 16 | 14,16 | 15 | 13,15 | 14 | 12': lambda: logic_1_25_10_100("16"),
-        '17 | 17 | 17,16 | 16 | 16,15 | 15 | 15': lambda: logic_1_25_10_100("17"),
-    }
-    
-    # Return the converted value based on the range mapping
-    return mapping.get(value, lambda: value)()  # Return original value if not found in mapping
-def convert_w(value):
-    """
-    Function to convert w values.
-    """
-    if isinstance(value, list):
-        # Handle lists by joining their elements into a single string
-        value = ','.join(value)
-    
-    # Define the mapping of a values to their corresponding converted values
-    mapping = {
-        '1': lambda: logic_1_25_10_100("1"),
-        '2': lambda: logic_1_25_10_100("2"),
-        '3': lambda: logic_1_25_10_100("3"),
-        '4': lambda: logic_1_25_10_100("4"),
-        '5': lambda: logic_1_25_10_100("5"),
-        '6': lambda: logic_1_25_10_100("6"),
-        '7': lambda: logic_1_25_10_100("7"),
-        '9': lambda: logic_1_25_10_100("9"),
-        '10': lambda: logic_1_25_10_100("10"),
-        '12': lambda: logic_1_25_10_100("12"),
-        '14': lambda: logic_1_25_10_100("14"),
-        '16': lambda: logic_1_25_10_100("16"),
-        '17': lambda: logic_1_25_10_100("17"),
-        '20': lambda: logic_1_25_10_100("20"),
-        '1,2': lambda: logic_1_25_10_100("2"),
-        '2,3': lambda: logic_1_25_10_100("3"),
-        '3,4': lambda: logic_1_25_10_100("4"),
-        '3,5': lambda: logic_1_25_10_100("4"),
-        '5,2': lambda: logic_1_25_10_100("3"),
-        '1,1,1': lambda: logic_1_25_10_100("1"),
-        '6,3-4,1-2': lambda: logic_1_25_10_100("6"),
-        '8,4-5,1-3': lambda: logic_1_25_10_100("8"),
-        '9,4-6,1-3': lambda: logic_1_25_10_100("9"),
-        '10,4-7,1-3': lambda: logic_1_25_10_100("10"),
-        '11,5-7,1-4': lambda: logic_1_25_10_100("11"),
-        '12,5-8,1-4': lambda: logic_1_25_10_100("12"),
-        '13,5-9,1-4': lambda: logic_1_25_10_100("13"),
-        '14,6-9,1-5': lambda: logic_1_25_10_100("14"),
-        '15,6-10,1-5': lambda: logic_1_25_10_100("15"),
-        '18,7-12,1-6': lambda: logic_1_25_10_100("18"),
-        '20,8-13,1-7': lambda: logic_1_25_10_100("20"),
-        '22,8-15,1-7': lambda: logic_1_25_10_100("22")
-    }
-
-
-    # Return the converted value based on the s_mapping
-    return mapping.get(value, lambda: value)()  # Return original value if not found in mapping
 def convert_ld(value):
     """
     Function to convert ld values.
@@ -223,48 +88,13 @@ def convert_ld(value):
     
     # Define the mapping of a values to their corresponding converted values
     mapping = {
-        '4+': 1,
-        '5+': 0.8,
-        '6+': 0.6,
-        '7+': 0.4,
-        '8+': 0.3,
-        '6+,7+': 0.6,
-        '8+,7+': 0.4,
-        '5+,6+,7+': 0.8,
-        '6+,7+,8+': 0.6,
-        '7+,8+,9+': 0.4,
-        '8+,9+,10+': 0.3
-    }
-
-
-    # Return the converted value based on the s_mapping
-    return mapping.get(value, value)  # Return original value if not found in mapping
-def convert_oc(value):
-    """
-    Function to convert oc values.
-    """
-    if isinstance(value, list):
-        # Handle lists by joining their elements into a single string
-        value = ','.join(map(str, value))
-
-    # Define the mapping of a values to their corresponding converted values
-    mapping = {
-        '0': 0.01,
-        '1': 0.1,
-        '2': 0.2,
-        '3': 0.3,
-        '4': 0.4,
-        '5': 0.5,
-        '6': 0.6,
-        '1,0': 0.1,
-        '2,1': 0.2,
-        '2,1,0': 0.2,
-        '3,2,1': 0.3,
-        '4,3,2': 0.4,
-        '5,4,3': 0.5,
-        '6,5,4': 0.6,
-        '8,7,6': 0.8,
-        '10,9,8': 1
+        '4+': 2,
+        '5+': 1.7,
+        '6+': 1.4,
+        '7+': 1.0,
+        '8+': 0.7,
+        '9+': 0.5,
+        '10+': 0.1
     }
 
 
@@ -280,14 +110,13 @@ def convert_sv(value):
     
     # Define the mapping of a values to their corresponding converted values
     mapping = {
-        '2+': 1,
-        '3+': 0.7,
-        '4+': 0.5,
-        '5+': 0.3,
+        '2+': 2,
+        '3+': 1.5,
+        '4+': 1.0,
+        '5+': 0.5,
         '6+': 0.1,
-        '3+ , 2+': 0.9,
-        '3+ , 4+': 0.6,
-        '6+, 7+, 8+': 0.05
+        '7+': 0.01,
+        '8+': 0.01
     }
 
 
@@ -304,16 +133,17 @@ def convert_invul_sv(value):
     # Define the mapping of a values to their corresponding converted values
     mapping = {
         '': 0.01, # Assigning a default value of 0.01 for empty strings
-        '3++/3++': 1,
-        '4++/4++': 0.7,
-        '5++/5++': 0.4,
-        '6++/6++': 0.1,
-        '3++/4++': 0.8,
-        '4++/3++': 0.8,
-        '4++/5++': 0.6,
-        '5++/4++': 0.6,
-        '5++/4++, 6++/5++, /6++': 0.3,
-        ' , 4++/4++': 0.5
+        '3++/3++': 4,
+        '4++/4++': 3,
+        '5++/5++': 2,
+        '6++/6++': 1,
+        '3++/4++': 3.5,
+        '4++/3++': 3.5,
+        '4++/5++': 1.5,
+        '5++/4++': 1.5,
+        '6++/5++': 0.5,
+        '7++/6++': 0.1,
+        '8++/7++': 0.01,
     }
 
 
@@ -369,16 +199,14 @@ def retrieve_and_preprocess_data():
         rows = cur.fetchall()
 
         # Preprocess data
-        Units_data = pd.DataFrame(rows, columns=['Unit_id', 'Unit_name', 'Unit_type', 'Nb_fig', '"Movement | Cruising Speed | Hover"', 'BS', 'WS', 'S', '"Front | Side | Rear"', 'W', 'A', 'I', 'Ld', 'OC', 'Sv', 'Invul_sv', 'U_Pts',
+        Units_data = pd.DataFrame(rows, columns=['Unit_id', 'Unit_name', 'Unit_type', 'Nb_fig', 'Movement', 'Cruising Speed', 'Hover', 'BS', 'WS', 'S', 'T', 'Front', 'Side', 'Rear', 'HP', 'A', 'I', 'Ld', 'OC', 'Sv', 'Invul_sv', 'U_Pts',
                 'rule_count', 'aptitude_count', 'psy_count'])
-        Units_data['"Movement | Cruising Speed | Hover"'] = Units_data['"Movement | Cruising Speed | Hover"'].apply(convert_movement)
+        Units_data['Movement'] = Units_data['Movement'].apply(convert_movement)
+        Units_data['Cruising Speed'] = Units_data['Cruising Speed'].apply(convert_movement)
+        Units_data['Hover'] = Units_data['Hover'].apply(convert_movement)
         Units_data['BS'] = Units_data['BS'].apply(convert_bws)
         Units_data['WS'] = Units_data['WS'].apply(convert_bws)
-        Units_data['A'] = Units_data['A'].apply(convert_a)
-        Units_data['"Front | Side | Rear"'] = Units_data['"Front | Side | Rear"'].apply(convert_e)
-        Units_data['W'] = Units_data['W'].apply(convert_w)
         Units_data['Ld'] = Units_data['Ld'].apply(convert_ld)
-        Units_data['OC'] = Units_data['OC'].apply(convert_oc)
         Units_data['Sv'] = Units_data['Sv'].apply(convert_sv)
         Units_data['Invul_sv'] = Units_data['Invul_sv'].apply(convert_invul_sv)
         if (Units_data['Nb_fig'] == 0).any():
