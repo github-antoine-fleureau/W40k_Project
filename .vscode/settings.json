@@ -1,5 +1,18 @@
 {
-    "sqltools.connections": [],
+    "sqltools.connections": [
+        {
+            "mssqlOptions": {
+                "appName": "SQLTools",
+                "useUTC": true,
+                "encrypt": true
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "driver": "MSSQL",
+            "connectString": "Server=tcp:persow40k.database.windows.net,1433;Initial Catalog=W40k;Persist Security Info=False;User ID=antoinefleureau;Password=Olic@hay87;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;",
+            "name": "W40k"
+        }
+    ],
     "editor.cursorSmoothCaretAnimation": "explicit",
     "editor.formatOnPaste": true,
     "editor.formatOnType": true
