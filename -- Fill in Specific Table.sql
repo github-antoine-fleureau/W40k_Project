@@ -1,5 +1,4 @@
 -- Unit Table (Imperium)
--- Active: 1711638446495@@127.0.0.1@5432@postgres@public
 INSERT INTO units (
 Unit_name, group_faction_id, Faction_id, Unit_type, Nb_fig,
 Movement, Cruising_Speed, Hover, BS, WS, S, T, Front, Side, Rear, HP, A, I, Ld, OC, Sv, Invul_sv,
@@ -1040,7 +1039,6 @@ VALUES('CHAPLAIN GRIMALDUS - Mereck Grimaldus', 1, 1, 'Infantry', 1, '6"', NULL,
 ;
 
 -- Unit Table (Chaos)
--- Active: 1711638446495@@127.0.0.1@5432@postgres@public
 INSERT INTO units (
 Unit_name, group_faction_id, Faction_id, Unit_type, Nb_fig,
 Movement, Cruising_Speed, Hover, BS, WS, S, T, Front, Side, Rear, HP, A, I, Ld, OC, Sv, Invul_sv,
@@ -1756,7 +1754,6 @@ VALUES('KONRAD CURZE - Konrad Curze, The King of Terrors, The Night Hunter - Ful
 ;
 
 -- Unit Table (Xenos)
--- Active: 1711638446495@@127.0.0.1@5432@postgres@public
 INSERT INTO units (
 Unit_name, group_faction_id, Faction_id, Unit_type, Nb_fig,
 Movement, Cruising_Speed, Hover, BS, WS, S, T, Front, Side, Rear, HP, A, I, Ld, OC, Sv, Invul_sv,
@@ -2918,7 +2915,6 @@ VALUES('WARBOSS - Squigbait Skragjaw', 5, 18, 'Infantry', 1, '6"', NULL, NULL, '
 
 
 -- Unit Aptitudes Table
- -- Active: 1711638446495@@127.0.0.1@5432@postgres@public
 -- Units Aptitudes table --
 INSERT INTO units_aptitudes (aptitude_name, aptitude_desc)
 VALUES
@@ -3464,7 +3460,6 @@ VALUES
 
 
 -- Weapons table --
--- Active: 1711638446495@@127.0.0.1@5432@postgres@public
 INSERT INTO weapons (group_faction_id, Weapon_name, Weapon_type, Range, A, S, AP, D, W_Pts)
 VALUES
 -- Range, A, S, AP, D, W_Pts

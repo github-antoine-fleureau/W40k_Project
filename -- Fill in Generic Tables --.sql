@@ -1,5 +1,4 @@
 -- Core rules Table
--- Active: 1711638446495@@127.0.0.1@5432@postgres@public
 INSERT INTO core_rules (phase_rule, phase_desc)
 VALUES
     ('Command Phase', 'Both players gain 1CP.
@@ -129,7 +128,6 @@ VALUES
 ;
 
 -- Special rules Table
--- Active: 1711638446495@@127.0.0.1@5432@postgres@public
 INSERT INTO special_rules (Rule_name, Rule_desc)
 VALUES
     ('Absorbed Warp Charge', 'When firing with this weapon, first add up the combined mastery levels of all Psyker units, friend or foe, that are within 12" of the firer (though Psyker units that are embarked within Transports do not count), and pick up that many dice. You can then add up to 3 more dice to this hand by removing them from your own Warp Charge pool. The total number of dice in your hand is the number of shots the weapon now fires.'),
@@ -491,7 +489,6 @@ VALUES
 
 
 -- Types Table
--- Active: 1711638446495@@127.0.0.1@5432@postgres@public
 INSERT INTO types (types_name, types_desc)
 VALUES
     ('Infantry', 'Infantries are the most common and dependable units in Warhammer 40,000. As the bulk of the rules are concerned with them, there are no additional rules to present here.'),
@@ -553,7 +550,6 @@ VALUES
 
 
 -- Psychic Tables
--- Active: 1711638446495@@127.0.0.1@5432@postgres@public
 -- Psychic Powers Domains table
 INSERT INTO psychic_powers_domains (Domains)
 VALUES
@@ -918,7 +914,6 @@ VALUES
 
 
 -- Factions tables
--- Active: 1711638446495@@127.0.0.1@5432@postgres@public
 -- Group Factions table
 INSERT INTO group_factions (group_faction_name)
 VALUES
