@@ -5,10 +5,8 @@
 -- If connecting to an Azure SQL Database, the connection might be implicit, or you'd manage this in VSCode or a connection UI.
 
 -- Use the target database
-USE [YourDatabase];
+USE [W40k];
 
--- Example Query: Fetch data from a table
-SELECT * FROM your_table_name;
 
 -- Add more SQL commands here based on your project needs
 
