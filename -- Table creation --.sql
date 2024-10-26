@@ -31,7 +31,7 @@ CREATE TABLE faction_aptitudes (
 -- Specific Tables creation --
 -- Units table
 CREATE TABLE units (
-    Unit_id INT IDENTITY PRIMARY KEY, Unit_name VARCHAR(200) NOT NULL, group_faction_id INT NOT NULL REFERENCES group_factions (group_faction_id),
+    Unit_id INT IDENTITY PRIMARY KEY, Unit_name VARCHAR(200) NOT NULL, Attribut VARCHAR(50) NULL, group_faction_id INT NOT NULL REFERENCES group_factions (group_faction_id),
     Faction_id INT NOT NULL REFERENCES factions (Faction_id), Unit_type VARCHAR(50), Nb_fig INT NOT NULL,
     Movement VARCHAR(10) NOT NULL, Cruising_Speed VARCHAR(10) NULL, Hover VARCHAR(10) NULL,
     BS VARCHAR(5) NULL, WS VARCHAR(5) NULL, S INT NOT NULL, T INT NULL,

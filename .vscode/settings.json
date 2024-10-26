@@ -1,5 +1,16 @@
 {
-    "sqltools.connections": [],
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "PostgreSQL 17",
+            "username": "postgres",
+            "password": "Olic@hay87",
+            "database": "W40k"
+        }
+    ],
     "editor.cursorSmoothCaretAnimation": "explicit",
     "editor.formatOnPaste": true,
     "editor.formatOnType": true,
