@@ -10,6 +10,8 @@ def logic_1_25_10_100(value):
     """
     Function to convert values based on a linear logic.
     """
+    if value is None:
+        return 1  # Valeur par défaut pour les valeurs manquantes
     # Define the points (1, 0.01) and (20, 1)
     x1, y1 = 1, 0.1
     x2, y2 = 25, 1
@@ -53,11 +55,16 @@ def convert_movement(value):
         '6"': 0.06,
         '5"': 0.05,
         '4"': 0.04,
-        '0"': 0.01
+        '3"': 0.03,
+        '2"': 0.02,
+        '1"': 0.01,
+        '0"': 0.005
     }
     
     # Return the converted value based on the movement mapping
-    return mapping.get(value, value)  # Return original value if not found in mapping
+    if value is None:
+        return 1  # Valeur par défaut pour les valeurs nulles
+    return mapping.get(value, 0.06)  # Valeur par défaut 1 pour celles non trouvées
 def convert_bws(value):
     """
     Function to convert BS & WS values.
@@ -77,7 +84,9 @@ def convert_bws(value):
 
 
     # Return the converted value based on the s_mapping
-    return mapping.get(value, value)  # Return original value if not found in mapping
+    if value is None:
+        return 1  # Valeur par défaut pour les valeurs nulles
+    return mapping.get(value, 1)  # Valeur par défaut 1 pour celles non trouvées
 def convert_ld(value):
     """
     Function to convert ld values.
@@ -99,7 +108,9 @@ def convert_ld(value):
 
 
     # Return the converted value based on the s_mapping
-    return mapping.get(value, value)  # Return original value if not found in mapping
+    if value is None:
+        return 1  # Valeur par défaut pour les valeurs nulles
+    return mapping.get(value, 1)  # Valeur par défaut 1 pour celles non trouvées
 def convert_sv(value):
     """
     Function to convert sv values.
@@ -121,7 +132,9 @@ def convert_sv(value):
 
 
     # Return the converted value based on the s_mapping
-    return mapping.get(value, value)  # Return original value if not found in mapping
+    if value is None:
+        return 1  # Valeur par défaut pour les valeurs nulles
+    return mapping.get(value, 1)  # Valeur par défaut 1 pour celles non trouvées
 def convert_invul_sv(value):
     """
     Function to convert invul_sv values.
@@ -148,7 +161,9 @@ def convert_invul_sv(value):
 
 
     # Return the converted value based on the s_mapping
-    return mapping.get(value, value)  # Return original value if not found in mapping
+    if value is None:
+        return 1  # Valeur par défaut pour les valeurs nulles
+    return mapping.get(value, 0.01)  # Valeur par défaut 1 pour celles non trouvées
 ## Define function to retrieve and preprocess data from the database
 def retrieve_and_preprocess_data():
     """
@@ -156,12 +171,13 @@ def retrieve_and_preprocess_data():
     """
     try:
         conn = psycopg2.connect(
-            dbname="postgres",
+            dbname="W40k",
             user="postgres",
-            password="Olicah@y87",
+            password="antoine",
             host="localhost",
             port="5432"
         )
+
         cur = conn.cursor()
 
         # Retrieve data from the database
@@ -185,7 +201,7 @@ def retrieve_and_preprocess_data():
         )
 
         SELECT 
-            u.Unit_id, u.Unit_name, u.Unit_type, u.Nb_fig, u."Movement | Cruising Speed | Hover", u.BS, u.WS, u.S, u."Front | Side | Rear", u.W, u.A, u.I, u.Ld, u.OC, u.Sv, u.Invul_sv, u.U_Pts,
+            u.Unit_id, u.Unit_name, u.Unit_type, u.Nb_fig, u.Movement, u.Cruising_Speed, u.Hover, u.BS, u.WS, u.S, u.T, u.Front, u.Side, u.Rear, u.HP, u.A, u.I, u.Ld, u.OC, u.Sv, u.Invul_sv, u.U_Pts,
             COALESCE(rule_count, 0) AS rule_count, COALESCE(aptitude_count, 0) AS aptitude_count, POWER(COALESCE(psy_count, 0), 3) AS psy_count
         FROM 
             units u
@@ -279,9 +295,9 @@ def main():
 
         # Establish database connection
         conn = psycopg2.connect(
-            dbname="postgres",
+            dbname="W40k",
             user="postgres",
-            password="Olicah@y87",
+            password="antoine",
             host="localhost",
             port="5432"
         )
@@ -300,10 +316,12 @@ def update_db(Units_data, conn, cur):
     # Update the original Units table with the corrected 'U_Pts' values
     for index, row in Units_data.iterrows():
         try:
-            cur.execute("UPDATE Units SET U_Pts = %s WHERE Unit_id = %s", (row['Predicted_U_Pts'], row['Unit_id']))
+            # Update or add a new column 'U_Pts_updated' with the predicted values
+            cur.execute("ALTER TABLE Units ADD COLUMN IF NOT EXISTS U_Pts_updated INTEGER;")
+            cur.execute("UPDATE Units SET U_Pts_updated = %s WHERE Unit_id = %s", (row['Predicted_U_Pts'], row['Unit_id']))
         except Exception as e:
             print(f"Error updating Unit_id {row['Unit_id']}: {str(e)}")
-
+    
     # Commit the changes
     conn.commit()
 
