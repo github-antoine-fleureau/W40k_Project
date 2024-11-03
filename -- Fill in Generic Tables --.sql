@@ -924,26 +924,26 @@ VALUES
     ('ORKS')
 ;
 -- Factions table
-INSERT INTO factions (Faction_name, Faction_keywords, group_faction_id, group_faction_name)
+INSERT INTO factions (Faction_name, Faction_keywords, group_faction_id)
 VALUES
-    ('Adeptus Astartes - Black Templars', 'IMPERIUM, ADEPTUS ASTARTES, BLACK TEMPLARS', 1, 'IMPERIUM'),
-    ('Adeptus Astartes - Salamanders', 'IMPERIUM, ADEPTUS ASTARTES, SALAMANDERS', 1, 'IMPERIUM'),
-    ('Adeptus Astartes - Blood Angels', 'IMPERIUM, ADEPTUS ASTARTES, BLOOD ANGELS', 1, 'IMPERIUM'),
-    ('Adeptus Astartes - Night Hawks', 'IMPERIUM, ADEPTUS ASTARTES, NIGHT HAWKS', 1, 'IMPERIUM'),
-    ('Adeptus Astartes - Deathwatch', 'IMPERIUM, ADEPTUS ASTARTES, DEATHWATCH', 1, 'IMPERIUM'),
-    ('Adepta Sororitas - Order of Our Martyred Lady', 'IMPERIUM, ADEPTUS MINISTORUM, ADEPTA SORORITAS, ORDER OF OUR MARTYRED LADY', 1, 'IMPERIUM'),
-    ('Agents of the Imperium', 'IMPERIUM, AGENTS OF THE IMPERIUM', 1, 'IMPERIUM'),
-    ('Adeptus Mechanicus - Cult of Mars', 'IMPERIUM, ADEPTUS MECHANICUS, CULT MECHANICUS, MARS', 1, 'IMPERIUM'),
-    ('Imperial Knights - House Taranis', 'IMPERIUM, IMPERIAL KNIGHTS, QUESTOR MECHANICUS, HOUSE TARANIS', 1, 'IMPERIUM'),
-    ('Chaos Daemons', 'CHAOS, LEGIONES DAEMONICA', 2, 'CHAOS'),
-    ('Heretic Astartes - Night Lords', 'CHAOS, HERETIC ASTARTES, TRAITORIS ASTARTES, NIGHT LORDS', 2, 'CHAOS'),
-    ('Heretic Astartes - Death Guard', 'CHAOS, HERETIC ASTARTES, TRAITORIS ASTARTES, NURGLE, DEATH GUARD', 2, 'CHAOS'),
-    ('Heretic Astartes - Thousand Sons', 'CHAOS, HERETIC ASTARTES, TRAITORIS ASTARTES, TZEENTCH, THOUSAND SONS', 2, 'CHAOS'),
-    ('Heretic Astartes - World Eaters', 'CHAOS, HERETIC ASTARTES, TRAITORIS ASTARTES, KHORNE, WORLD EATERS', 2, 'CHAOS'),
-    ('Craftworld - Biel-Tan', 'AELDARI, ASURYANI, BIEL-TAN', 3, 'AELDARI'),
-    ('Drukhari', 'AELDARI, DRUKHARI', 3, 'AELDARI'),
-    ('Necrons - Dynasty Mephrit', 'NECRONS, MEPHRIT', 4, 'NECRONS'),
-    ('Orks - Clan Snakebites', 'ORKS, SNAKEBITES', 5, 'ORKS')
+    ('Adeptus Astartes - Black Templars', 'IMPERIUM, ADEPTUS ASTARTES, BLACK TEMPLARS', 1),
+    ('Adeptus Astartes - Salamanders', 'IMPERIUM, ADEPTUS ASTARTES, SALAMANDERS', 1),
+    ('Adeptus Astartes - Blood Angels', 'IMPERIUM, ADEPTUS ASTARTES, BLOOD ANGELS', 1),
+    ('Adeptus Astartes - Night Hawks', 'IMPERIUM, ADEPTUS ASTARTES, NIGHT HAWKS', 1),
+    ('Adeptus Astartes - Deathwatch', 'IMPERIUM, ADEPTUS ASTARTES, DEATHWATCH', 1),
+    ('Adepta Sororitas - Order of Our Martyred Lady', 'IMPERIUM, ADEPTUS MINISTORUM, ADEPTA SORORITAS, ORDER OF OUR MARTYRED LADY', 1),
+    ('Agents of the Imperium', 'IMPERIUM, AGENTS OF THE IMPERIUM', 1),
+    ('Adeptus Mechanicus - Cult of Mars', 'IMPERIUM, ADEPTUS MECHANICUS, CULT MECHANICUS, MARS', 1),
+    ('Imperial Knights - House Taranis', 'IMPERIUM, IMPERIAL KNIGHTS, QUESTOR MECHANICUS, HOUSE TARANIS', 1),
+    ('Chaos Daemons', 'CHAOS, LEGIONES DAEMONICA', 2),
+    ('Heretic Astartes - Night Lords', 'CHAOS, HERETIC ASTARTES, TRAITORIS ASTARTES, NIGHT LORDS', 2),
+    ('Heretic Astartes - Death Guard', 'CHAOS, HERETIC ASTARTES, TRAITORIS ASTARTES, NURGLE, DEATH GUARD', 2),
+    ('Heretic Astartes - Thousand Sons', 'CHAOS, HERETIC ASTARTES, TRAITORIS ASTARTES, TZEENTCH, THOUSAND SONS', 2),
+    ('Heretic Astartes - World Eaters', 'CHAOS, HERETIC ASTARTES, TRAITORIS ASTARTES, KHORNE, WORLD EATERS', 2),
+    ('Craftworld - Biel-Tan', 'AELDARI, ASURYANI, BIEL-TAN', 3),
+    ('Drukhari', 'AELDARI, DRUKHARI', 3),
+    ('Necrons - Dynasty Mephrit', 'NECRONS, MEPHRIT', 4),
+    ('Orks - Clan Snakebites', 'ORKS, SNAKEBITES', 5)
 ;
 -- Factions Aptitudes table
 INSERT INTO faction_aptitudes (Faction_id, Faction_aptitude_name, Faction_aptitude_desc)

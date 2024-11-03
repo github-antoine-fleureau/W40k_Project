@@ -1,6 +1,6 @@
 -- Unit Table (Imperium)
 INSERT INTO units (
-Unit_name, group_faction_id, Faction_id, Unit_type, Nb_fig,
+Unit_name, Attribut, group_faction_id, Faction_id, Unit_type, Nb_fig,
 Movement, Cruising_Speed, Hover, BS, WS, S, T, Front, Side, Rear, HP, A, I, Ld, OC, Sv, Invul_sv,
 weapons,
 aptitudes,
@@ -1040,7 +1040,7 @@ VALUES('CHAPLAIN GRIMALDUS - Mereck Grimaldus', NULL, 1, 1, 'Infantry', 1, '6"',
 
 -- Unit Table (Chaos)
 INSERT INTO units (
-Unit_name, group_faction_id, Faction_id, Unit_type, Nb_fig,
+Unit_name, Attribut, group_faction_id, Faction_id, Unit_type, Nb_fig,
 Movement, Cruising_Speed, Hover, BS, WS, S, T, Front, Side, Rear, HP, A, I, Ld, OC, Sv, Invul_sv,
 weapons,
 aptitudes,
@@ -1755,7 +1755,7 @@ VALUES('KONRAD CURZE - Konrad Curze, The King of Terrors, The Night Hunter', 'Fu
 
 -- Unit Table (Xenos)
 INSERT INTO units (
-Unit_name, group_faction_id, Faction_id, Unit_type, Nb_fig,
+Unit_name, Attribut, group_faction_id, Faction_id, Unit_type, Nb_fig,
 Movement, Cruising_Speed, Hover, BS, WS, S, T, Front, Side, Rear, HP, A, I, Ld, OC, Sv, Invul_sv,
 weapons,
 aptitudes,
