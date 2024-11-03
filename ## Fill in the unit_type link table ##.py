@@ -2,9 +2,9 @@ import psycopg2
 
 # Connect to the database
 conn = psycopg2.connect(
-    dbname="postgres",
+    dbname="W40k",
     user="postgres",
-    password="Olicah@y87",
+    password="antoine",
     host="localhost",
     port="5432"
 )
@@ -16,8 +16,8 @@ try:
     # Execute the SQL query
     cur.execute("""
         SELECT u.Unit_id, u.Unit_type, t.Types_id
-        FROM units u
-        LEFT JOIN types t ON u.Unit_type LIKE '%' || t.Types_name || '%'
+        FROM public.units u
+        LEFT JOIN public.types t ON u.unit_type LIKE '%' || t.types_name || '%'
     """)
 
     # Fetch all rows

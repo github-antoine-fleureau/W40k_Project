@@ -2,9 +2,9 @@ import psycopg2
 
 # Connect to the database
 conn = psycopg2.connect(
-    dbname="postgres",
+    dbname="W40k",
     user="postgres",
-    password="Olicah@y87",
+    password="antoine",
     host="localhost",
     port="5432"
 )

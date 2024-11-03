@@ -5,10 +5,10 @@
             "server": "localhost",
             "port": 5432,
             "driver": "PostgreSQL",
-            "name": "PostgreSQL 17",
+            "database": "W40k",
             "username": "postgres",
-            "password": "Olic@hay87",
-            "database": "W40k"
+            "password": "antoine",
+            "name": "PostgreSQL 17"
         }
     ],
     "editor.cursorSmoothCaretAnimation": "explicit",
