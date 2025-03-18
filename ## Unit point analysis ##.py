@@ -171,12 +171,12 @@ def retrieve_and_preprocess_data():
     """
     try:
         conn = psycopg2.connect(
-            dbname="W40k",
-            user="postgres",
-            password="antoine",
-            host="localhost",
-            port="5432"
-        )
+        dbname="Personnal_datas",
+        user="postgres",
+        password="Olic@hay87",
+        host="localhost",
+        port="5432"
+    )
 
         cur = conn.cursor()
 
