@@ -2,8 +2,8 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
 import pg8000
-import GPy
 import numpy as np
+import GPy
 
 ## Retrieve and preprocesse data into a DataFrame named 'weapons_data'
 
