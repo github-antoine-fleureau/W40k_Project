@@ -8,12 +8,12 @@ import numpy as np
 ## Retrieve and preprocesse data into a DataFrame named 'weapons_data'
 
 # Connect to the database
-conn = psycopg2.connect(
-    dbname="Personnal_datas",
-    user="postgres",
-    password="Olic@hay87",
-    host="localhost",
-    port="5432"
+conn = pg8000.connect(
+    user='postgres',
+    password='Olic@hay87',
+    host='localhost',
+    port=5432,
+    database='Personnal_datas'
 )
 
 # Create a cursor

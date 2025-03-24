@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
 from sklearn.ensemble import RandomForestRegressor
-import psycopg2
+import pg8000
 import numpy as np
 
 ## Define preprocessing functions with comments and error handling
@@ -170,13 +170,13 @@ def retrieve_and_preprocess_data():
     Retrieve and preprocess data from the database.
     """
     try:
-        conn = psycopg2.connect(
-        dbname="Personnal_datas",
-        user="postgres",
-        password="Olic@hay87",
-        host="localhost",
-        port="5432"
-    )
+        conn = pg8000.connect(
+            user='postgres',
+            password='Olic@hay87',
+            host='localhost',
+            port=5432,
+            database='Personnal_datas'
+        )
 
         cur = conn.cursor()
 
@@ -294,12 +294,12 @@ def main():
         save_results_to_excel(Units_data)
 
         # Establish database connection
-        conn = psycopg2.connect(
-            dbname="Personnal_datas",
-            user="postgres",
-            password="Olic@hay87",
-            host="localhost",
-            port="5432"
+        conn = pg8000.connect(
+            user='postgres',
+            password='Olic@hay87',
+            host='localhost',
+            port=5432,
+            database='Personnal_datas'
         )
         cur = conn.cursor()
 
