@@ -254,13 +254,13 @@ def train_and_evaluate_model(X_train, X_test, y_train, y_test):
     mse = mean_squared_error(y_test, y_pred)
     print("Random Forest Mean Squared Error:", mse)
     return rf_model  # Return the trained model
-## Define function to save results to Excel
-def save_results_to_excel(Units_data):
-    """
-    Save calculated columns to an Excel file.
-    """
-    # Save results to an Excel file
-    Units_data.to_excel('C:/Users/antoi/OneDrive/Documents/Individuels/Antoine/Professionnel/Projet_W40k/unit_predictions.xlsx', index=False)
+# ## Define function to save results to Excel
+# def save_results_to_excel(Units_data):
+#     """
+#     Save calculated columns to an Excel file.
+#     """
+#     # Save results to an Excel file
+#     Units_data.to_excel('C:\Users\afleureau\OneDrive - Aleda SAS\Documents\Personnel\W40k_Project/unit_predictions.xlsx', index=False)
 ## Define main function to orchestrate the process
 def main():
     """
@@ -290,8 +290,8 @@ def main():
         Units_data['Difference_by_fig'] = Units_data['Predicted_U_Pts_by_fig'] - Units_data['U_Pts_by_fig']
         Units_data['Difference'] = Units_data['Predicted_U_Pts'] - Units_data['U_Pts']
 
-        # Save results to Excel
-        save_results_to_excel(Units_data)
+        # # Save results to Excel
+        # save_results_to_excel(Units_data)
 
         # Establish database connection
         conn = pg8000.connect(
