@@ -25,7 +25,7 @@ try:
     # Insert rows into the units_aptitudes_link table
     for row in rows:
         Unit_id, aptitudes, Aptitude_id = row
-        print(f"Unit_id: {Unit_id}, aptitudes: {aptitudes}, Aptitude_id: {Aptitude_id}")  # Debugging line
+        # print(f"Unit_id: {Unit_id}, aptitudes: {aptitudes}, Aptitude_id: {Aptitude_id}")  # Debugging line
         if Aptitude_id:
             # If multiple rules found in weapon_type separated by " - ", duplicate rows
             parts = aptitudes.split(" - ")

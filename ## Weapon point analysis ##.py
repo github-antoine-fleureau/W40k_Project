@@ -1,9 +1,9 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error
 import pg8000
 import numpy as np
-import GPy
 
 ## Retrieve and preprocesse data into a DataFrame named 'weapons_data'
 
@@ -280,19 +280,17 @@ try:
     # Split the data into training and testing sets
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-    # Create and train the Gaussian Process model
-    kernel = GPy.kern.RBF(input_dim=X_train.shape[1])  # Radial Basis Function (RBF) kernel
-    model = GPy.models.GPRegression(X_train, y_train, kernel)
-    model.optimize(messages=True)  # Optimize hyperparameters
-
+    # Create and train the RandomForestRegressor model
+    model = RandomForestRegressor(n_estimators=100, random_state=42)
+    model.fit(X_train, y_train)
+    
     # Evaluate the model's performance on the testing set
-    y_pred, _ = model.predict(X_test)
+    y_pred = model.predict(X_test)
     mse = mean_squared_error(y_test, y_pred)
     print("Mean Squared Error:", mse)
 
     # Use the trained model to predict 'W_Pts' for the entire dataset
-    weapons_data['Predicted_W_Pts'], _ = model.predict(X)
-    weapons_data['Predicted_W_Pts'] = weapons_data['Predicted_W_Pts'].round().astype(int)
+    weapons_data['Predicted_W_Pts'] = model.predict(X).round().astype(int)
 
     # Assess coherence of predicted 'W_Pts' values compared to actual values
     weapons_data['Difference'] = weapons_data['Predicted_W_Pts'] - weapons_data['W_Pts']
