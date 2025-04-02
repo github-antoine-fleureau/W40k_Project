@@ -21,38 +21,37 @@ try:
     cur.execute(query)
     units = cur.fetchall()
 
-    # For each unit, get the corresponding aptitude_name from faction_aptitudes
+    # For each unit, get the corresponding aptitude_id from faction_aptitudes
     for unit in units:
         Unit_id, faction_id = unit
+        # print(f"Processing Unit_id: {Unit_id}, faction_id: {faction_id}")  # Debugging line
 
-        # Get all aptitude_name for the given faction_id
+        # Get all aptitude_id for the given faction_id
         aptitude_query = """
-            SELECT aptitude_name
+            SELECT aptitude_id
             FROM faction_aptitudes
             WHERE faction_id = %s
         """
         cur.execute(aptitude_query, (faction_id,))
-        aptitudes = [aptitude[0] for aptitude in cur.fetchall()]
+        aptitudes = cur.fetchall()
 
-        if aptitudes:
-            # Concatenate aptitude names separated by ' - '
-            aptitudes_str = ' - '.join(aptitudes)
-
+        # Insert rows into the units_faction_aptitudes_link table
+        for aptitude in aptitudes:
+            Aptitude_id = aptitude[0]
             # Check if the combination already exists in units_faction_aptitudes_link
             check_query = """
                 SELECT COUNT(*)
                 FROM units_faction_aptitudes_link
-                WHERE Unit_id = %s
+                WHERE Unit_id = %s AND Aptitude_id = %s
             """
-            cur.execute(check_query, (Unit_id,))
+            cur.execute(check_query, (Unit_id, Aptitude_id))
             count = cur.fetchone()[0]
-
             if count == 0:
                 insert_query = """
-                    INSERT INTO units_faction_aptitudes_link (Unit_id, Aptitudes_Name)
+                    INSERT INTO units_faction_aptitudes_link (Unit_id, Aptitude_id)
                     VALUES (%s, %s)
                 """
-                cur.execute(insert_query, (Unit_id, aptitudes_str))
+                cur.execute(insert_query, (Unit_id, Aptitude_id))
 
     # Commit the transaction
     conn.commit()
