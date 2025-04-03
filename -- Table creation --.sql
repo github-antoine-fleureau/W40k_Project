@@ -133,7 +133,7 @@ CREATE TABLE units_aptitudes_link (
 -- Units Faction_Aptitudes Link table
     CREATE TABLE units_faction_aptitudes_link ( 
     Unit_id INT NOT NULL REFERENCES units(Unit_id),
-    aptitude_id INT NOT NULL REFERENCES faction_aptitudes(aptitude_id)
+    aptitudes TEXT NOT NULL
 );
 
 -- Units Psy table

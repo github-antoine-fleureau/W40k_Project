@@ -1,6 +1,6 @@
 import pg8000
 
-# Connect to the database
+# Connexion à la base de données
 conn = pg8000.connect(
     user='postgres',
     password='Olic@hay87',
@@ -9,62 +9,68 @@ conn = pg8000.connect(
     database='Personnal_datas'
 )
 
-# Create a cursor
+# Création du curseur
 cur = conn.cursor()
 
 try:
-    # Execute the SQL query to get unit_id and faction_id
+    # Récupérer tous les unit_id et faction_id depuis la table units
     query = """
-        SELECT u.Unit_id, u.faction_id
-        FROM units u
+        SELECT unit_id, faction_id
+        FROM units
     """
     cur.execute(query)
     units = cur.fetchall()
 
-    # For each unit, get the corresponding aptitude_id from faction_aptitudes
+    # Parcourir chaque unité pour récupérer ses aptitudes de faction
     for unit in units:
-        Unit_id, faction_id = unit
-        # print(f"Processing Unit_id: {Unit_id}, faction_id: {faction_id}")  # Debugging line
+        unit_id, faction_id = unit
 
-        # Get all aptitude_id for the given faction_id
+        # Récupérer toutes les aptitudes sous forme de texte concaténé
         aptitude_query = """
-            SELECT aptitude_id
+            SELECT STRING_AGG(faction_aptitude_name, ' - ') AS aptitudes
             FROM faction_aptitudes
             WHERE faction_id = %s
         """
         cur.execute(aptitude_query, (faction_id,))
-        aptitudes = cur.fetchall()
+        aptitude_names = cur.fetchone()[0]  # Récupère la chaîne concaténée
 
-        # Insert rows into the units_faction_aptitudes_link table
-        for aptitude in aptitudes:
-            Aptitude_id = aptitude[0]
-            # Check if the combination already exists in units_faction_aptitudes_link
+        if aptitude_names:  # Vérifier si des aptitudes existent
+            # Vérifier si l'unité est déjà présente dans la table cible
             check_query = """
                 SELECT COUNT(*)
                 FROM units_faction_aptitudes_link
-                WHERE Unit_id = %s AND Aptitude_id = %s
+                WHERE unit_id = %s
             """
-            cur.execute(check_query, (Unit_id, Aptitude_id))
+            cur.execute(check_query, (unit_id,))
             count = cur.fetchone()[0]
+
             if count == 0:
+                # Insérer si l'entrée n'existe pas
                 insert_query = """
-                    INSERT INTO units_faction_aptitudes_link (Unit_id, Aptitude_id)
+                    INSERT INTO units_faction_aptitudes_link (unit_id, aptitudes)
                     VALUES (%s, %s)
                 """
-                cur.execute(insert_query, (Unit_id, Aptitude_id))
+                cur.execute(insert_query, (unit_id, aptitude_names))
+            else:
+                # Mettre à jour si l'entrée existe déjà
+                update_query = """
+                    UPDATE units_faction_aptitudes_link
+                    SET aptitudes = %s
+                    WHERE unit_id = %s
+                """
+                cur.execute(update_query, (aptitude_names, unit_id))
 
-    # Commit the transaction
+    # Valider les transactions
     conn.commit()
-
     print("Data inserted successfully.")
 
 except Exception as e:
-    # Rollback the transaction in case of an error
+    # Annuler les transactions en cas d'erreur
     conn.rollback()
     print("Error:", e)
     raise
 
 finally:
-    # Close the cursor and connection
+    # Fermer le curseur et la connexion
     cur.close()
     conn.close()
