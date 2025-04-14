@@ -29,10 +29,12 @@ try:
     for row in rows:
         Unit_id, Weapons, group_faction_id = row
 
-        # Split weapons string by " - " separator
-        weapon_names = Weapons.split(" - ")
+        # Clean and split weapons string
+        weapon_names_raw = Weapons.split(" - ")
         
-        # For each weapon name, try to find the corresponding Weapon_id(s)
+        # Remove prefix before '_' for each weapon
+        weapon_names = [w.split('_', 1)[1] if '_' in w else w for w in weapon_names_raw]
+
         for weapon_name in weapon_names:
             weapon_found = False
             
@@ -58,31 +60,26 @@ try:
             # Check if any weapon_id was found
             if weapon_ids:
                 weapon_found = True
-                # Insert each unique (Unit_id, Weapon_id) pair into the units_weapons table
                 for weapon_id in weapon_ids:
-                    pair = (Unit_id, weapon_id[0])  # Extract Weapon_id from the fetched result
+                    pair = (Unit_id, weapon_id[0])
                     if pair not in inserted_pairs:
                         cur.execute("""
                             INSERT INTO units_weapons (Unit_id, Weapon_id)
                             VALUES (%s, %s)
-                        """, (Unit_id, weapon_id[0]))  # Extracting Weapon_id from the fetched result
-                        inserted_pairs.add(pair)  # Add the pair to the set of inserted pairs
+                        """, (Unit_id, weapon_id[0]))
+                        inserted_pairs.add(pair)
 
-            # If no match was found, print a warning for this weapon
             if not weapon_found:
                 print(f"Weapon not found for: {weapon_name}")
 
     # Commit the transaction
     conn.commit()
-
     print("Data inserted successfully.")
 
 except Exception as e:
-    # Rollback the transaction in case of an error
     conn.rollback()
     print("Error:", e)
 
 finally:
-    # Close the cursor and connection
     cur.close()
     conn.close()
