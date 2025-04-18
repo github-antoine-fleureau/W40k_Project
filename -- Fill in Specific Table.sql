@@ -1067,7 +1067,7 @@ VALUES('KONRAD CURZE - Konrad Curze, The King of Terrors, The Night Hunter', 'Fu
     'Independent Character - Night Vision - Fear - Frag & Krak Grenades - Precision Strike - Fight First - Psyker (1)',
     'Divination', 180),
     ('CHAOS LORD IN TERMINATOR ARMOUR - Morvax the Nightstalker', NULL, 2, 11, 'Infantry', 1, '5"', NULL, NULL, '2+', '2+', 4, 6, NULL, NULL, NULL, 6, 5, 3, '6+', 1, '2+', '4++/4++',
-    'Exalted weapon - Dæmon blade',
+    '1_Exalted weapon - 1_Dæmon blade',
     'Formidably Resilient - Lord of Chaos - Mark of Nurgle',
     'Independent Character - Night Vision - Fear - Deep Strike - Fearless - Bulky',
     NULL, 150),
