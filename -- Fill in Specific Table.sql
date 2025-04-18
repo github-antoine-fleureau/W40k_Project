@@ -3158,6 +3158,7 @@ VALUES
     ('Icon of Despair', 'All model in a unit equipped with an Icon of Despair have the Fear special rule.'),
     ('Icon of Vengeance', 'All model in a unit equipped with an icon of vengeance have the Fearless special rule.'),
     ('Icon of Excess', 'All model in a unit equipped with an Icon of Despair have the Fear special rule.'),
+    ('Glory to Chaos','rien'),
     ('Mark of Khorne', 'Each time a model in this unit makes a melee attack, if that models unit made a charge move, was charged or performed a Heroic Intervention this turn, add 1 to the Strength characteristic of that attack.'),
     ('Mark of Slaanesh', 'Each time a model in this unit makes an attack, an unmodified Hit roll of 5+ scores a Critical Hit.'),
     ('Mark of Nurgle', 'Each time an attack is made against this unit, if the Strength characteristic of that attack is at least double the Toughness characteristic of this unit, subtract 1 from that attack’s wound roll.'),
