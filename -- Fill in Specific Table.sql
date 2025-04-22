@@ -1582,7 +1582,7 @@ VALUES('KONRAD CURZE - Konrad Curze, The King of Terrors, The Night Hunter', 'Fu
     'Deep Strike - Dæmon - Fear - Furious Charge - Chariot',
     NULL, 20),
     ('SOUL GRINDER - Bloodforged Annihilator', 'Full HP', 2, 10, 'Vehicle', 1, '8"', '12"', NULL, '3+', '3+', 9, NULL, 15, 14, 13, 14, 7, 4, '6+', 5, '3+', '5++/4++',
-    '1_Harvester cannon - 1_Torrent of burning blood - 2_Defiler claw - 1_ Warpsword',
+    '1_Harvester cannon - 1_Torrent of burning blood - 2_Defiler claw - 1_Warpsword',
     'Scuttling Walker - Dæmonforge - Dæmonic Possession - Explosive Lethal Demise - Mark of Khorne',
     'Deep Strike - Dæmon - Fear - Furious Charge - Walker',
     NULL, 85),
