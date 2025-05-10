@@ -961,7 +961,7 @@ VALUES
     ((SELECT Faction_id FROM factions WHERE Faction_name = 'Adeptus Astartes - Salamanders'), 'Nocturne Born', 'All units from Adeptus Astartes - Salamanders army do not add their Initiative Score when making Sweeping Run rolls, and reduce any Run and Charge distances by -1” (to a minimum of 1”).'),
     ((SELECT Faction_id FROM factions WHERE Faction_name = 'Adeptus Astartes - Salamanders'), 'The Covenant of Fire', 'Units from this army have the following rules:
     — OBSIDIAN FORGED Models in this unit have a 5+ invulnerable save against melta, volkite, plasma and flamer weapons, and melta bombs.
-    — VENERATION OF WRATH All melta, volkite, plasma and flamer weapons, and melta bombs  equipped by models in this unit have Master-crafted special rule and models in this units can re-roll failed To Wound rolls.
+    — VENERATION OF WRATH All melta, volkite, plasma and flamer weapons, and melta bombs equipped by models in this unit have Master-crafted special rule and models in this units can re-roll failed To Wound rolls.
     — IMPLACABLE Models in this unit gain the Move Throught Cover specail rule.'),
     ((SELECT Faction_id FROM factions WHERE Faction_name = 'Adeptus Astartes - Blood Angels'), 'Oath of the Moment', 'At the start of your Command phase, select one unit from your opponent’s army. Until the start of your next Command phase, each time a model from your army with this ability makes an attack that targets that ennemy unit, you can re-roll the Hit roll and you can re-roll the Wound roll.'),
     ((SELECT Faction_id FROM factions WHERE Faction_name = 'Adeptus Astartes - Blood Angels'), 'Encarmine Fury', 'All units from Adeptus Astartes - Blood Angels army gain +1 to their To Wound roll in Fighting phase.'),
