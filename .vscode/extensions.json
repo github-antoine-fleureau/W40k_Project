@@ -1,7 +1,6 @@
 {
     "recommendations": [
         "ms-mssql.sql-database-projects-vscode",
-        "ms-ossdata.vscode-postgresql",
         "ms-python.python"
     ]
 }
