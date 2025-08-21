@@ -118,8 +118,8 @@ VALUES
       Subtract 1 from hit rolls made when Monsters and Vehicles shoot Heavy weapons while any enemy units remain within their Engagement Range.
       Hit Roll (Ranged Attack): A hit is scored if the D6 result equals or exceeds that attack’s BS.
       Hit Roll (Melee Attack): A hit is scored if the D6 result equals or exceeds that attack’s WS.
-      Critical Hit: Unmodified Hit roll of 6. Always successful.
-      An unmodified Hit roll of 1 always fails.
+      Critical Hit: Unmodified Hit roll of 6 always successful.
+        An unmodified Hit roll of 1 always fails.
 
         WOUND ROLL:
         ATTACK’S STRENGTH VS TARGET’S TOUGHNESS	                      D6 RESULT REQUIRED
@@ -129,8 +129,8 @@ VALUES
         Strength is LESS than the Toughness.	                               5+
         Strength is HALF (or less than half) the Toughness.	                 6+
 
-      Critical Wound: Unmodified Wound roll of 6. Always successful.
-      An unmodified Wound roll of 1 always fails.
+      Critical Wound: Unmodified Wound roll of 6 always successful.
+        An unmodified Wound roll of 1 always fails.
       If a model in the target unit has already lost any wounds or had other attacks allocated to it this phase, the attack must be allocated to that model.
     - Saving throw: Roll one D6 and modify by the attack’s AP. If result less than the Sv of the selected model, the saving throw is failed and it suffers damage.
       Otherwise attack is saved.
@@ -142,6 +142,7 @@ VALUES
       Mortal wounds inflicted by attacks always apply after any normal damage, even if that damage was saved.
     - Inflict damage: The selected model loses a number of wounds equal to the attack’s D.
       If a model is destroyed by an attack, any excess damage inflicted by that attack is lost.
+    - Go to Ground : A unit targeted can choose to Go to Ground. If it do so, it receives a +2 bonus to its cover saving throws until the start of its next turn. However, it cannot move, shoot, or charge while it is in this state.
     - Once all your Units have shooted, progress to the Charging phase.
     '),
 
@@ -169,14 +170,17 @@ VALUES
         +1 Charge Bonus: Engaged models that charged this turn get +1 Attack this turn. Models in units that made a disordered charge do not get this bonus.
         +1 Two Weapons: Engaged models with two single-handed weapons (often a Melee weapon and/or pistol in each hand) get +1 Attack. Models with more than two weapons gain no additional benefit; you only get one extra Attack, even if you have four arms and a sword in each.
       Other Bonuses: Models may have other special rules and wargear that confer extra Attacks.
+    - If a unit is locked in close combat with an enemy it cannot harm, it may choose to automatically fail its Morale test at the end of the combat and fall back. Fearless units may not use this rule.
     - Consolidation Move: Up to 3". Every model that moves must end closer to the closest enemy model, and in base-to-base contact with an enemy model if possible. The unit must end in Unit Coherency and within Engagement Range of at least one enemy unit if possible. If the above is not possible, each model can move towards the closest objective marker, but this must result in the unit being within range of it and in Unit Coherency. If the above is also not possible, no models can Consolidate.
     '),
 
     ('Morale Phase',
     '
     - Players alternate taking Morale tests for units from their army that have suffered casualties this turn.
-    - Morale test = D6 + number of models destroyed this turn. Unmodified roll of 1 always a success (no models flee). If Morale test exceeds unit’s Ld, one model flees and other models must take Combat Attrition tests.
+    - Morale test = D6 + number of models destroyed this turn. Unmodified roll of 1 always a success (no models flee), and unmodified roll of 6 always a failure (models must take Combat Attrition tests, and survivors must flee). If Morale test exceeds unit’s Ld, the unit must flee.
       Combat Attrition tests: Roll one D6 for each remaining model in unit; for each 1, one additional model flees. Subtract 1 from Combat Attrition tests if unit is below Half-strength.
+      Fall Back: If a unit fails a Morale test, it must Fall Back. This means it moves away from the nearest enemy unit, using its normal Move characteristic. If a unit is already Falling Back, it cannot be rallied and must continue to Fall Back.
+    - Regroup test : If a unit is Falling Back, it can attempt to Regroup at the start of its next turn. To do so, roll two D6. If Morale test exceeds unit’s Ld, the unit must continue to Fall Back, otherwise its Fall Back move ends and it can act normally. If the unit is below 25% of its starting numbers, its Regroup test is successful only on a double 1.
     - If one player has no more units left to take Morale tests, their opponent then takes Morale tests for their remaining units, one at a time.
     - Once all units have taken Morale tests, progress to the Unit Coherency Checks step.
     - Remove models from units in your army that are not in unit coherency.
