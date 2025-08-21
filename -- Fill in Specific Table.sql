@@ -3473,7 +3473,6 @@ VALUES
 -- Weapons table --
 INSERT INTO weapons (group_faction_id, Weapon_name, Weapon_type, Range, A, S, AP, D, W_Pts)
 VALUES
--- Range, A, S, AP, D, W_Pts
     (1, 'Bolt pistol', 'Pistol', '12"', '1', '4', '0', '1', 0),
     (1, 'Heavy bolt pistol', 'Pistol', '18"', '1', '4', '-1', '1', 5),
     (1, 'Special issue bolt pistol', 'Pistol - Precision Shots', '12"', '1', '4', '0', '2', 0),

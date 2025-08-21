@@ -1,5 +1,5 @@
 -- Core rules Table
-INSERT INTO core_rules_1 (phase_rule, phase_desc)
+INSERT INTO core_rules (phase_rule, phase_desc)
 VALUES
     ('Command Phase',
     '
