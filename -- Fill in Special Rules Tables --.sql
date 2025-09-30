@@ -759,7 +759,7 @@ VALUES
         No Escape: Template weapons hitting an Open topped Vehicle with an embarked unit cause D6 hits to that unit, resolved at the weapons S and AP. Hits are Randomly Allocated.
     '),
     ('Transport',
-    'Transports have the (Huge) Transport Capacity X determining the type and maximum number of friendly models they can carry. Units can start the battle embarked within a Transport model, declared before setting it up.
+    'Transports have a (Huge) Transport Capacity X, which defines both the type and maximum number of friendly models they can carry. At the start of the battle, units may begin embarked within a Transport model, provided this is declared before the model is set up.
         Unshakable Nerve: Units embarked upon Transports have the Fearless special rule while they are embarked.
         Fire Deck: When this Transport fires, select a weapon from up to X embarked models; the Transport is equipped with those weapons. Models firing from a Vehicle moving at Combat Speed count as having moved. Those from a Vehicle moving at Cruising Speed can only make Snap Shots. No shooting if the Vehicle uses smoke launchers, and vice versa.
         Access Points: Each Vehicle with passenger capacity has Access Points, like doors or hatches, where passengers enter and exit (including Flying bases).
